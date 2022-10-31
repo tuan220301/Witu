@@ -24,7 +24,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   /// If user not signed-in with wallet - show prompt
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
-    return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()}/>;
+    return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
   }
 
   function changeGreeting(e) {
@@ -32,7 +32,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
     setUiPleaseWait(true);
     const { greetingInput } = e.target.elements;
     helloNEAR.setGreeting(greetingInput.value)
-      .then(async () => {return helloNEAR.getGreeting();})
+      .then(async () => { return helloNEAR.getGreeting(); })
       .then(setValueFromBlockchain)
       .finally(() => {
         setUiPleaseWait(false);
@@ -41,13 +41,13 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
 
   return (
     <>
-      <SignOutButton accountId={wallet.accountId} onClick={() => wallet.signOut()}/>
+      <SignOutButton accountId={wallet.accountId} onClick={() => wallet.signOut()} />
       <main className={uiPleaseWait ? 'please-wait' : ''}>
         <h1>
           The contract says: <span className="greeting">{valueFromBlockchain}</span>
         </h1>
         <form onSubmit={changeGreeting} className="change">
-          <label>Change greeting:</label>
+          <label>Change greeting123:</label>
           <div>
             <input
               autoComplete="off"
@@ -60,7 +60,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
             </button>
           </div>
         </form>
-        <EducationalText/>
+        <EducationalText />
       </main>
     </>
   );
