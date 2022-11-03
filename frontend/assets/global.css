@@ -1,8 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
 }
 
-html {
+/* html {
   --bg: #efefef;
   --fg: #1e1e1e;
   --gray: #555;
@@ -228,4 +232,4 @@ main.please-wait .loader:after{
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-}
+} */
