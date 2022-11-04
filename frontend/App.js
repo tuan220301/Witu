@@ -13,7 +13,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
 
   // Get blockchian state once on component load
   React.useEffect(() => {
-    helloNEAR.getGreeting()
+    helloNEAR.get_user()
       .then(setValueFromBlockchain)
       .catch(alert)
       .finally(() => {
@@ -27,17 +27,17 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
     return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
   }
 
-  function changeGreeting(e) {
-    e.preventDefault();
-    setUiPleaseWait(true);
-    const { greetingInput } = e.target.elements;
-    helloNEAR.setGreeting(greetingInput.value)
-      .then(async () => { return helloNEAR.getGreeting(); })
-      .then(setValueFromBlockchain)
-      .finally(() => {
-        setUiPleaseWait(false);
-      });
-  }
+  // function changeGreeting(e) {
+  //   e.preventDefault();
+  //   setUiPleaseWait(true);
+  //   const { greetingInput } = e.target.elements;
+  //   helloNEAR.add_blog(greetingInput.value)
+  //     .then(async () => { return helloNEAR.get_user(); })
+  //     .then(setValueFromBlockchain)
+  //     .finally(() => {
+  //       setUiPleaseWait(false);
+  //     });
+  // }
 
   return (
     <>
@@ -47,7 +47,8 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
         <h1>
           The contract says: <span className="greeting">{valueFromBlockchain}</span>
         </h1>
-        <form onSubmit={changeGreeting} className="change">
+        {/* add new blog */}
+        <form className="change">
           <label>Change greeting123:</label>
           <div>
             <input
