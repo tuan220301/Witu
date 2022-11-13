@@ -29,7 +29,7 @@ export class HelloNEAR {
       }
     })
   }
-  async add_blog(title, content, date, type_blog) {
+  async addBlog(title, content, date, type_blog) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'add_blog',
@@ -38,7 +38,7 @@ export class HelloNEAR {
       }
     })
   }
-  async get_blog() {
+  async getBlog() {
     return await this.wallet.viewMethod({
       contractId: this.contractId,
       method: "get_blog"

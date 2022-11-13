@@ -8,7 +8,11 @@ import { HelloNEAR } from './near-interface';
 import { Wallet } from './near-wallet';
 
 //react router
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AddBlog } from './Blog_app/Modules/Add_blog';
+import { Settings } from './Blog_app/Modules/Settings';
+import { AboutUs } from './Blog_app/Modules/About_us';
+
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
 const wallet = new Wallet({ createAccessKeyFor: process.env.CONTRACT_NAME })
@@ -22,7 +26,13 @@ window.onload = async () => {
 
   ReactDOM.render(
     <BrowserRouter>
-      <App isSignedIn={isSignedIn} helloNEAR={helloNEAR} wallet={wallet} />,
+      <Routes>
+        <Route path="/" index element={<App isSignedIn={isSignedIn} helloNEAR={helloNEAR} wallet={wallet} />} />
+        <Route path="add_blog" element={<AddBlog wallet={wallet} />} />
+        <Route path="setting" element={<Settings wallet={wallet} />} />
+        <Route path="about_us" element={<AboutUs wallet={wallet} />} />
+
+      </Routes>
     </BrowserRouter>,
     document.getElementById('root')
   );

@@ -58,7 +58,7 @@ impl Contract {
     #[init]
     // Public method - returns the greeting saved, defaulting to DEFAULT_MESSAGE
     pub fn new() -> Self {
-        assert!(!env::state_exists(), "The contract is already initialized");
+        assert!(!env::state_exists(), "The contract is already initialized ...");
         Contract { users: Vec::new(), blogs: Vec::new() }
     }
 

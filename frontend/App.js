@@ -4,6 +4,8 @@ import React from 'react';
 import './assets/global.css';
 
 import { EducationalText, SignInPrompt, SignOutButton } from './login_page';
+import { Nav_menu } from './Blog_app/Components/Nav_menu';
+import { Home } from './Blog_app/Modules/Home';
 
 
 export default function App({ isSignedIn, helloNEAR, wallet }) {
@@ -20,7 +22,15 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
         setUiPleaseWait(false);
       });
   }, []);
-
+  // console.log("valueFromBlockchain: " + JSON.stringify(valueFromBlockchain))
+  // React.useEffect(() => {
+  //   helloNEAR.get_blog()
+  //     .then(setValueFromBlockchain)
+  //     .catch(alert)
+  //     .finally(() => {
+  //       setUiPleaseWait(false);
+  //     });
+  // }, []);
   /// If user not signed-in with wallet - show prompt
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
@@ -38,16 +48,17 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   //       setUiPleaseWait(false);
   //     });
   // }
-
   return (
     <>
-      <SignOutButton accountId={wallet.accountId} onClick={() => wallet.signOut()} />
-      <main className={uiPleaseWait ? 'please-wait' : ''}>
+
+      <Nav_menu accountId={wallet} />
+      <Home data={helloNEAR} />
+      {/* <SignOutButton accountId={wallet.accountId} onClick={() => wallet.signOut()} /> */}
+      {/* <main className={uiPleaseWait ? 'please-wait' : ''}>
         <p>{wallet.accountId}</p>
         <h1>
           The contract says: <span className="greeting">{valueFromBlockchain}</span>
         </h1>
-        {/* add new blog */}
         <form className="change">
           <label>Change greeting123:</label>
           <div>
@@ -62,8 +73,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
             </button>
           </div>
         </form>
-        <EducationalText />
-      </main>
+      </main> */}
     </>
   );
 }

@@ -1,0 +1,51 @@
+.nav_menu_container {
+    width: 100%;
+    height: 100px;
+    background-color: #262422;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.menu {
+    width: 100%;
+    height: 100%;
+    padding: 18px;
+}
+
+.menu_btn {
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    padding: 5px;
+    color: white;
+}
+
+.list_btn {
+    float: right;
+}
+
+.menu_btn:hover {
+    color: #D89292;
+}
+
+.app-menu {
+    color: white;
+    height: 100vh;
+    width: 20rem;
+    background-color: #292929;
+    z-index: 200;
+
+    transform: translateX(-100%);
+    transition: 0.3s;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.menu-open {
+    transform: translateX(0%);
+}

@@ -36,7 +36,9 @@
     "@near-wallet-selector/wallet-connect": "^7.0.0",
     "near-api-js": "^0.44.2",
     "react": "^18.1.0",
+    "react-dimmer": "^1.0.7",
     "react-dom": "^18.1.0",
+    "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.3",
     "regenerator-runtime": "^0.13.9"
   },
