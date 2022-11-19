@@ -2,7 +2,7 @@ import React from "react";
 import './style.css';
 
 
-import { Input_post_component } from "../Components/Modal/New_post";
+import { Input_post_component } from "../Components/Post_input_component";
 
 export const Home = ({ data }) => {
     const [blogs, setBlogs] = React.useState([]);
