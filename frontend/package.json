@@ -23,6 +23,7 @@
     "typescript": "^4.7.2"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.4",
     "@near-wallet-selector/core": "^7.0.0",
     "@near-wallet-selector/ledger": "^7.0.0",
     "@near-wallet-selector/math-wallet": "^7.0.0",
@@ -34,6 +35,8 @@
     "@near-wallet-selector/nightly-connect": "^7.0.0",
     "@near-wallet-selector/sender": "^7.0.0",
     "@near-wallet-selector/wallet-connect": "^7.0.0",
+    "flowbite": "^1.5.4",
+    "flowbite-react": "^0.3.5",
     "near-api-js": "^0.44.2",
     "react": "^18.1.0",
     "react-dimmer": "^1.0.7",

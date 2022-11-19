@@ -6,7 +6,6 @@ import { ReactDimmer } from "react-dimmer";
 import { AddBlog } from "./Add_blog";
 import { BsPencilSquare, BsFileImage, BsCameraVideo, BsCamera } from 'react-icons/bs';
 import { MdOutlineAddReaction } from 'react-icons/md';
-import { ImageUploadComponent } from "./Upload_file_component";
 export const Input_post_component = (data, check) => {
 
     const upBlog = () => {

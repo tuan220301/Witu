@@ -24,10 +24,8 @@
 // }
 pub struct Blog{
     id: u32,
-    title: String,
     content: String,
     date: String,
-    type_blog: String,
 }
 #[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
 #[serde(crate = "near_sdk::serde")]
@@ -80,17 +78,14 @@ impl Contract {
     ){
         let idx = self.users.iter().position(|o| o.id == id).unwrap();
         self.users[idx].user_name = user_name;
-        // self.users[idx].wallet = content;
         self.users[idx].number_phone = number_phone;
         self.users[idx].instagram = instagram;
         self.users[idx].facebook = facebook;
     }
     pub fn add_blog(
         &mut self, 
-        title: String,
         content: String,
         date: String,
-        type_blog: String,
     ){
         let mut id: u32 = 1;
         let blog_clone = self.blogs.clone();
@@ -100,10 +95,8 @@ impl Contract {
         }
         let new_blog: Blog = Blog{
             id: id,
-            title: title,
             content: content,
             date: date,
-            type_blog: type_blog,
         };
         self.blogs.push(new_blog);
     }
@@ -111,16 +104,12 @@ impl Contract {
     pub fn update_blog(
         &mut self, 
         id: u32,
-        title: String,
         content: String,
         date: String,
-        type_blog: String,
     ){
         let idx = self.blogs.iter().position(|o| o.id == id).unwrap();
-        self.blogs[idx].title = title;
         self.blogs[idx].content = content;
         self.blogs[idx].date = date;
-        self.blogs[idx].type_blog = type_blog;
     }
     pub fn delete_blog(&mut self, id: u32){
         let index = self.blogs.iter().position(|o| o.id == id).unwrap();
