@@ -1,6 +1,8 @@
 import React from "react";
 import './style.css';
-import { TfiMoreAlt } from 'react-icons/tfi';
+
+
+import { Input_post_component } from "../Components/Modal/New_post";
 
 export const Home = ({ data }) => {
     const [blogs, setBlogs] = React.useState([]);
@@ -9,10 +11,23 @@ export const Home = ({ data }) => {
             .then(setBlogs)
             .catch(alert)
     }, [])
+
+
     // console.log("blog length: " + blogs.length)
     return (
-        <div className="home_container">
-            <div className="text-[10rem] font-bold text-center">WiTu</div>
+        <div className="w-full h-full grid grid-cols-5">
+            <div>
+                feed
+            </div>
+            <div className="col-span-3">
+                <Input_post_component data={data} />
+
+            </div>
+            <div>
+                stories
+            </div>
+
+            {/* <div className="text-[10rem] font-bold text-center">WiTu</div>
             {
                 blogs.map(blog => {
                     // console.log("blog: " + JSON.stringify(blog))
@@ -43,7 +58,9 @@ export const Home = ({ data }) => {
                         </div>
                     )
                 })
-            }
+            } */}
+
         </div>
+
     )
 }

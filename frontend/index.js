@@ -9,7 +9,7 @@ import { Wallet } from './near-wallet';
 
 //react router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AddBlog } from './Blog_app/Modules/Add_blog';
+import { AddBlog } from './Blog_app/Components/Add_blog';
 import { Settings } from './Blog_app/Modules/Settings';
 import { AboutUs } from './Blog_app/Modules/About_us';
 

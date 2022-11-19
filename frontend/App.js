@@ -49,7 +49,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   //     });
   // }
   return (
-    <>
+    <div className='app_container'>
 
       <Nav_menu accountId={wallet} />
       <Home data={helloNEAR} />
@@ -74,6 +74,6 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
           </div>
         </form>
       </main> */}
-    </>
+    </div>
   );
 }
