@@ -1,7 +1,7 @@
 import React from 'react';
 // import './assets/global.css'
 import './Blog_app/Components/style.css';
-import { FiLogOut } from 'react-icons/fi';
+import { BiLogInCircle } from 'react-icons/bi';
 export function SignInPrompt({ greeting, onClick }) {
   return (
     <div className="login_container">
@@ -23,8 +23,10 @@ export function SignOutButton({ accountId, onClick }) {
     // <button style={{ float: 'right' }} onClick={onClick}>
     //   Sign out {accountId}
     // </button>
-    <button className="menu_btn" onClick={onClick}>
-      <FiLogOut />
+    <button className='block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 hover:text-gray-900' onClick={onClick}>
+      <div className='flex items-stretch'>
+        <BiLogInCircle className='text-xl mr-[5px]' /><label> Sign Out</label>
+      </div>
     </button>
   );
 }

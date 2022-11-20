@@ -23,12 +23,12 @@ export const Menu = ({ isMenuOpen }: IMenuProps) => {
             <Link to="/" className="w-full">Home</Link>
           </div>
         </li>
-        <li className="w-[100%] p-[20px] text-2xl text-black hover:bg-[#f4f4f4] hover:font-bold">
+        {/* <li className="w-[100%] p-[20px] text-2xl text-black hover:bg-[#f4f4f4] hover:font-bold">
           <div className="flex items-stretch">
             <span className="pr-[8px]"><BiAddToQueue /></span>
             <Link className="w-full" to="/add_blog" >Add Blog</Link>
           </div>
-        </li>
+        </li> */}
         <li className="w-[100%] p-[20px] text-2xl text-black hover:bg-[#f4f4f4] hover:font-bold">
           <div className="flex items-stretch">
             <span className="pr-[8px]"><FiSettings /></span>

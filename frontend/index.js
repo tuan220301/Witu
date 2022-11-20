@@ -9,7 +9,7 @@ import { Wallet } from './near-wallet';
 
 //react router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AddBlog } from './Blog_app/Components/Add_blog';
+// import { AddBlog } from './Blog_app/Components/List_Blog';
 import { Settings } from './Blog_app/Modules/Settings';
 import { AboutUs } from './Blog_app/Modules/About_us';
 
@@ -28,7 +28,7 @@ window.onload = async () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" index element={<App isSignedIn={isSignedIn} helloNEAR={helloNEAR} wallet={wallet} />} />
-        <Route path="add_blog" element={<AddBlog wallet={wallet} />} />
+        {/* <Route path="add_blog" element={<AddBlog wallet={wallet} />} /> */}
         <Route path="setting" element={<Settings wallet={wallet} />} />
         <Route path="about_us" element={<AboutUs wallet={wallet} />} />
 

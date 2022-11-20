@@ -3,7 +3,7 @@ import { ava } from './Nav_menu';
 import { useState, useEffect } from "react";
 import { TfiMoreAlt } from 'react-icons/tfi';
 import { ReactDimmer } from "react-dimmer";
-import { AddBlog } from "./Add_blog";
+import { AddBlog } from "./List_Blog";
 import { BsPencilSquare, BsFileImage, BsCameraVideo, BsCamera } from 'react-icons/bs';
 import { MdOutlineAddReaction } from 'react-icons/md';
 export const Input_post_component = (data, check) => {

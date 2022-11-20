@@ -3,14 +3,15 @@ import './style.css';
 
 
 import { Input_post_component } from "../Components/Post_input_component";
+import { ListBlog } from "../Components/List_Blog";
 
 export const Home = ({ data }) => {
-    const [blogs, setBlogs] = React.useState([]);
-    React.useEffect(() => {
-        data.getBlog()
-            .then(setBlogs)
-            .catch(alert)
-    }, [])
+    // const [blogs, setBlogs] = React.useState([]);
+    // React.useEffect(() => {
+    //     data.getBlog()
+    //         .then(setBlogs)
+    //         .catch(alert)
+    // }, [])
 
 
     // console.log("blog length: " + blogs.length)
@@ -21,7 +22,7 @@ export const Home = ({ data }) => {
             </div>
             <div className="col-span-3">
                 <Input_post_component data={data} />
-
+                <ListBlog listBlog={data} />
             </div>
             <div>
                 stories
