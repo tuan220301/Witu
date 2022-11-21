@@ -68,7 +68,7 @@ export const Input_post_component = (data, check) => {
     return (
 
         <div className="flex justify-center items-center">
-            <div className="grid grid-rows-8 w-[700px] h-[auto] bg-white mt-[10px] rounded-2xl">
+            <div className="grid grid-rows-8 w-[750px] h-[auto] bg-white mt-[10px] rounded-2xl">
                 <div className="w-full grid grid-cols-3 h-[50px]">
                     <div className="flex items-stretch text-xl p-[10px] hover:bg-[#f4f4f4] border-r-2 border-[#f4f4f4]">
                         <BsPencilSquare className='mr-[10px]' /><label className="text-base">Publish</label>

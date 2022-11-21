@@ -1,5 +1,6 @@
 import React from 'react';
 import { AvaBtn } from './Ava_Btn';
+import { ava } from './Nav_menu';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { AiOutlineLike, AiOutlineComment, AiOutlineShareAlt } from 'react-icons/ai';
 import ToggleOpt from './Toggle_Options';
@@ -20,15 +21,16 @@ export const ListBlog = ({ listBlog }) => {
     const share = () => {
         console.log('share btn');
     }
+    const avaCss = 'w-[50px] h-[50px] rounded-full';
     return (
         <div className='flex justify-center items-center mt-[10px]'>
-            <div className='grid grid-flow-row w-[700px] h-[auto]'>
+            <div className='grid grid-flow-row w-[750px] h-[auto]'>
                 {
                     blogs.map(item => {
                         return (
                             <div key={item.id} className='w-full p-[15px] bg-white mt-[10px] rounded-2xl'>
                                 <div className='flex items-stretch'>
-                                    <div className='w-[10%]'><AvaBtn /></div>
+                                    <div className='w-[10%]'><AvaBtn className={avaCss} srcImg={ava} /></div>
                                     <div className='gird gird-rows-2 w-[80%]'>
                                         <p>Name</p>
                                         <p>{item.date}</p>

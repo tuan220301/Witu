@@ -4,17 +4,18 @@ import { BiUserCircle, BiLogInCircle } from 'react-icons/bi';
 import { MdSupportAgent } from 'react-icons/md';
 import { SignOutButton } from '../../login_page';
 import { AvaBtn } from './Ava_Btn';
+import { ava } from './Nav_menu';
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function ToggleBtn({ wallet, list }) {
-
+    const avaCss = 'w-[50px] h-[50px] rounded-full';
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="inline-flex w-[50px] rounded-full  ">
-                    <AvaBtn />
+                    <AvaBtn className={avaCss} srcImg={ava} />
                     {/* <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" /> */}
                 </Menu.Button>
             </div>
