@@ -8,7 +8,7 @@ export const UserSummary = (user) => {
     const avaCss = 'w-[150px] h-[150px] rounded-full';
     return (
         <div className="rounded-xl w-[80%]  p-[10px] grid grid-flow-row">
-            <div className=" text-xl w-full bg-white ml-[15%] rounded-xl">
+            <div className=" text-xl w-full bg-white ml-[20%] rounded-xl">
                 <div className="flex justify-center items-center p-[10px]">
                     <AvaBtn className={avaCss} srcImg={ava} />
                 </div>
