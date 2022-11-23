@@ -17,31 +17,41 @@
 
 // Define the contract structure
 // #[near_bindgen]
-#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
-#[serde(crate = "near_sdk::serde")]
-// pub struct Contract {
-//     message: String,
-// }
-pub struct Blog{
-    id: u32,
-    content: String,
-    date: String,
-}
+
 #[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
 #[serde(crate = "near_sdk::serde")]
 pub struct User{
     id: u32,
-    user_name: String,
+    first_name: String,
+    last_name: String,
+    email: String,
     wallet: String,
     number_phone: String,
     instagram: String,
-    facebook: String,
+    facebook: String
+}
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub struct Comment{
+    id: u32,
+    content: String,
+    date: String,
+    id_blog: u32,
+}
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub struct Blog{
+    id: u32,
+    content: String,
+    date: String,
+    id_user: u32,
 }
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize)]
 pub struct Contract{
     users: Vec<User>,
     blogs: Vec<Blog>,
+    comments: Vec<Comment>
 }
 // Define the default, which automatically initializes the contract
 impl Default for Contract{
@@ -57,35 +67,73 @@ impl Contract {
     // Public method - returns the greeting saved, defaulting to DEFAULT_MESSAGE
     pub fn new() -> Self {
         assert!(!env::state_exists(), "The contract is already initialized ...");
-        Contract { users: Vec::new(), blogs: Vec::new() }
+        Contract { users: Vec::new(), blogs: Vec::new() ,comments: Vec::new()}
     }
 
     // Public method - accepts a greeting, such as "howdy", and records it
     pub fn get_user(self) -> Vec<User> {
         return self.users;
     }
-    pub fn get_blog(self) -> Vec<Blog>{
-        return self.blogs;
+    pub fn add_user(
+        &mut self,
+        first_name: String,
+        last_name: String,
+        email: String,
+        wallet: String,
+        number_phone: String,
+        instagram: String,
+        facebook: String
+    ){
+        let mut id: u32 = 1;
+        let user_clone = self.users.clone();
+        if user_clone.len() > 0{
+            let len = user_clone.len();
+            id = user_clone[len-1].id+1;
+        }
+        let new_user: User = User{
+            id: id,
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            wallet: wallet,
+            number_phone: number_phone,
+            instagram: instagram,
+            facebook: facebook
+        };
+        self.users.push(new_user);
     }
     pub fn update_user(
         &mut self, 
         id: u32,
-        user_name: String,
+        first_name: String,
+        last_name: String,
+        email: String,
         wallet: String,
         number_phone: String,
         instagram: String,
-        facebook: String,
+        facebook: String
     ){
         let idx = self.users.iter().position(|o| o.id == id).unwrap();
-        self.users[idx].user_name = user_name;
+        self.users[idx].first_name = first_name;
+        self.users[idx].last_name = last_name;
+        self.users[idx].email = email;
+        self.users[idx].wallet = wallet;
         self.users[idx].number_phone = number_phone;
         self.users[idx].instagram = instagram;
         self.users[idx].facebook = facebook;
+    }
+    pub fn delete_user(&mut self, id: u32){
+        let index = self.users.iter().position(|o| o.id == id).unwrap();
+        self.users.remove(index);
+    }
+    pub fn get_blog(self) -> Vec<Blog>{
+        return self.blogs;
     }
     pub fn add_blog(
         &mut self, 
         content: String,
         date: String,
+        id_user: u32,
     ){
         let mut id: u32 = 1;
         let blog_clone = self.blogs.clone();
@@ -97,6 +145,7 @@ impl Contract {
             id: id,
             content: content,
             date: date,
+            id_user:id_user,
         };
         self.blogs.push(new_blog);
     }
@@ -106,6 +155,7 @@ impl Contract {
         id: u32,
         content: String,
         date: String,
+        id_user:u32,
     ){
         let idx = self.blogs.iter().position(|o| o.id == id).unwrap();
         self.blogs[idx].content = content;
@@ -114,6 +164,43 @@ impl Contract {
     pub fn delete_blog(&mut self, id: u32){
         let index = self.blogs.iter().position(|o| o.id == id).unwrap();
         self.blogs.remove(index);
+    }
+    pub fn get_cmt(self) -> Vec<Comment>{
+        return self.comments;
+    }
+    pub fn add_comment(
+        &mut self, 
+        content: String,
+        date: String,
+        id_blog: u32
+    ){
+        let mut id: u32 = 1;
+        let cmt_clone = self.comments.clone();
+        if cmt_clone.len() > 0{
+            let len = cmt_clone.len();
+            id = cmt_clone[len-1].id+1;
+        }
+        let new_cmt: Comment = Comment{
+            id: id,
+            content: content,
+            date: date,
+            id_blog: id_blog,
+        };
+        self.comments.push(new_cmt);
+    }
+    pub fn update_cmt(
+        &mut self, 
+        id: u32,
+        content: String,
+        date: String,
+    ){
+        let idx = self.comments.iter().position(|o| o.id == id).unwrap();
+        self.comments[idx].content = content;
+        self.comments[idx].date = date;
+    }
+    pub fn delete_cmt(&mut self, id: u32){
+        let index = self.comments.iter().position(|o| o.id == id).unwrap();
+        self.comments.remove(index);
     }
 }
 

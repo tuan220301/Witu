@@ -14,27 +14,36 @@ export class HelloNEAR {
   //   return await this.wallet.callMethod({ 
   // contractId: this.contractId, method: 'set_greeting', args: { message: greeting } });
   // }
+  async addUser(first_name, last_name, email, wallet, number_phone, instagram, facebook) {
+    return await this.wallet.callMethod({
+      contractId: this.contractId,
+      method: 'add_user',
+      args: {
+        first_name, last_name, email, wallet, number_phone, instagram, facebook
+      }
+    })
+  }
   async get_user() {
     return await this.wallet.viewMethod({
       contractId: this.contractId,
       method: "get_user"
     })
   }
-  async update_user(user_name, wallet, number_phone, instagram, facebook) {
+  async update_user(id, first_name, last_name, email, wallet, number_phone, instagram, facebook) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'add_blog',
       args: {
-        user_name, wallet, number_phone, instagram, facebook
+        id, first_name, last_name, email, wallet, number_phone, instagram, facebook
       }
     })
   }
-  async addBlog(title, content, date, type_blog) {
+  async addBlog(content, date, id_user) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'add_blog',
       args: {
-        title, content, date, type_blog
+        content, date, id_user
       }
     })
   }
@@ -44,16 +53,46 @@ export class HelloNEAR {
       method: "get_blog"
     })
   }
-  async update_blog(id, title, content, date, type_blog) {
+  async updateBllog(id, content, date, id_user) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'update_blog',
-      args: { id, title, content, date, type_blog }
+      args: { id, content, date, id_user }
     })
   }
-  async delete_blog(id) {
+  async deleteBlog(id) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
+      method: 'delete_blog',
+      args: id
+    })
+  }
+  async addComment(content, date, id_blog) {
+    return await this.wallet.callMethod({
+      contractId: this.contractId,
+      method: 'add_comment',
+      args: {
+        content, date, id_blog
+      }
+    })
+  }
+  async getComment() {
+    return await this.wallet.viewMethod({
+      contractId: this.contractId,
+      method: "get_cmt"
+    })
+  }
+  async updateComment(id, content, date, id_blog) {
+    return await this.wallet.callMethod({
+      contractId: this.contractId,
+      method: 'update_cmt',
+      args: { id, content, date, id_blog }
+    })
+  }
+  async deleteComment(id) {
+    return await this.wallet.callMethod({
+      contractId: this.contractId,
+      method: 'delete_cmt',
       args: id
     })
   }
