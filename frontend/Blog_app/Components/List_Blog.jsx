@@ -4,13 +4,19 @@ import { ava } from './Nav_menu';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { AiOutlineLike, AiOutlineComment, AiOutlineShareAlt } from 'react-icons/ai';
 import ToggleOpt from './Toggle_Options';
-export const ListBlog = ({ listBlog }) => {
+export const ListBlog = ({ user, listControl }) => {
     const [blogs, setBlogs] = React.useState([]);
     React.useEffect(() => {
-        listBlog.getBlog()
+        listControl.getBlog()
             .then(setBlogs)
             .catch(alert)
     }, [])
+    let nameUser = '';
+    //get name of user
+    user.forEach(item => {
+        // console.log('item: ' + JSON.stringify(item));
+        nameUser = item.first_name + ' ' + item.last_name
+    });
     const listOptions = ['Edit', 'Delete'];
     const likeBtn = () => {
         console.log('like btn');
@@ -32,7 +38,7 @@ export const ListBlog = ({ listBlog }) => {
                                 <div className='flex items-stretch'>
                                     <div className='w-[10%]'><AvaBtn className={avaCss} srcImg={ava} /></div>
                                     <div className='gird gird-rows-2 w-[80%]'>
-                                        <p>Name</p>
+                                        <p>{nameUser}</p>
                                         <p>{item.date}</p>
                                     </div>
                                     <div className='w-[10%] text-xl'>

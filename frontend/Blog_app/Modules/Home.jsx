@@ -8,7 +8,7 @@ import { FriendSuggest } from "../Components/Friend_Suggest";
 import { FriendRequest } from "../Components/Friend_Request";
 import { UserSummary } from "../Components/User_Summary";
 
-export const Home = ({ data }) => {
+export const Home = ({ user, listControl }) => {
     // const [blogs, setBlogs] = React.useState([]);
     // React.useEffect(() => {
     //     data.getBlog()
@@ -38,11 +38,11 @@ export const Home = ({ data }) => {
     return (
         <div className="w-full h-full grid grid-cols-10">
             <div className='col-span-3 hidden xl:block'>
-                <UserSummary data={data.wallet} />
+                <UserSummary data={user} />
             </div>
             <div className='col-span-10 xl:col-span-4'>
-                <Input_post_component data={data} />
-                <ListBlog listBlog={data} />
+                <Input_post_component user={user} listControl={listControl} />
+                <ListBlog user={user} listControl={listControl} />
             </div>
             <div className='col-span-3 hidden xl:block'>
 
@@ -53,7 +53,9 @@ export const Home = ({ data }) => {
                             listFriendSuggest.map(item => {
                                 // console.log('item: ' + JSON.stringify(item))
                                 return (
-                                    <FriendSuggest listFriend={item} />
+                                    <div key={item.id}>
+                                        <FriendSuggest listFriend={item} />
+                                    </div>
                                 )
                             })
                         }

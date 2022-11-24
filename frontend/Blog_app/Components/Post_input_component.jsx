@@ -6,7 +6,8 @@ import { ReactDimmer } from "react-dimmer";
 import { AddBlog } from "./List_Blog";
 import { BsPencilSquare, BsFileImage, BsCameraVideo, BsCamera } from 'react-icons/bs';
 import { MdOutlineAddReaction } from 'react-icons/md';
-export const Input_post_component = (data, check) => {
+
+export const Input_post_component = ({ user, listControl }) => {
 
     const upBlog = () => {
         setModal((prevState) => !prevState);
@@ -18,7 +19,7 @@ export const Input_post_component = (data, check) => {
         console.log('video')
     }
     let displaytBtnClass = 'float-right w-[150px] h-[35px] mr-[10px] bg-[#5596e6] rounded-3xl text-white text-center hover:font-bold';
-
+    //get value from input of post blog
     const [inputVal, setInputVal] = useState('');
     onTyping = (event) => {
         setInputVal(event.target.value);
@@ -36,6 +37,7 @@ export const Input_post_component = (data, check) => {
     const [preview, setPreview] = useState();
     const [row, setRow] = useState(false);
     const [displayBtnClearImg, setDisplayBtnImg] = useState(false);
+
     useEffect(() => {
         if (!selectedFile) {
             setPreview(undefined)
@@ -48,7 +50,7 @@ export const Input_post_component = (data, check) => {
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl)
     }, [selectedFile])
-
+    //preview img when upload
     const onSelectFile = e => {
         if (!e.target.files || e.target.files.length === 0) {
             setSelectedFile(undefined)
@@ -59,12 +61,41 @@ export const Input_post_component = (data, check) => {
         setRow(true);
         setDisplayBtnImg(true);
     }
+    //delete img preview
     const removeImg = () => {
         setPreview(undefined);
         setRow(false);
         setDisplayBtnImg(false)
     }
-    // console.log('row: ' + row);
+    // console.log(data);
+
+    //call method in contract
+    const [listUser, setListUser] = useState([]);
+    // const dataClone = data.data
+
+    // console.log('user: ' + JSON.stringify(user.id))
+
+    const date = new Date();
+    const publishBtn = (event) => {
+        event.preventDefault();
+        let datePublish = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+        let idUser = 0;
+        user.forEach(user => {
+            // console.log('user: ' + JSON.stringify(user.id));
+            idUser = user.id;
+        });
+        console.log('inputVal: ' + inputVal);
+        console.log('datePublish: ' + datePublish);
+        console.log('idUser: ' + idUser);
+        listControl.addBlog(inputVal, datePublish, idUser);
+
+    }
+    // React.useEffect(() => {
+    //     listControl.addBlog()
+    //         .then(setBlogs)
+    //         .catch(alert)
+    // }, [])
+
     return (
 
         <div className="flex justify-center items-center">
@@ -110,7 +141,8 @@ export const Input_post_component = (data, check) => {
                     </div>
                     <div className="col-span-3">
                         <button className={displayBtnClearImg ? displaytBtnClass : 'hidden'} onClick={removeImg}>Remove Image</button>
-                        <button className={display(inputVal) ? displaytBtnClass : 'hidden'}>Publish</button>
+                        <button className={display(inputVal) ? displaytBtnClass : 'hidden'}
+                            onClick={publishBtn}>Publish</button>
                     </div>
                 </div>
             </div>

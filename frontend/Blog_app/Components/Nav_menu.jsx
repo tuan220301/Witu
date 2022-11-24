@@ -10,7 +10,7 @@ import { ReactDimmer } from "react-dimmer";
 import { Menu } from "./Toggle_menu";
 import { useState } from "react";
 import ToggleBtn from "./ToggleBtn";
-export const ava = 'https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-6/314337830_2212128372320281_3796251610106824436_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cXsyV9bBltMAX8qj-kI&_nc_ht=scontent.fsgn8-2.fna&oh=00_AfAbLoqVCqSHN1An5BJ02qs0nD-h70PCP1YITaK5HPtlUg&oe=637B1FF3';
+export const ava = 'https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6';
 export const Nav_menu = ({ accountId }) => {
     const [isMenuOpen, setMenu] = useState(false);
     const handleMenu = () => {

@@ -1,5 +1,5 @@
 import 'regenerator-runtime/runtime';
-import React from 'react';
+import React, { useState } from 'react';
 
 import './assets/global.css';
 
@@ -22,37 +22,45 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
         setUiPleaseWait(false);
       });
   }, []);
-  // console.log("valueFromBlockchain: " + JSON.stringify(valueFromBlockchain))
-  // React.useEffect(() => {
-  //   helloNEAR.get_blog()
-  //     .then(setValueFromBlockchain)
-  //     .catch(alert)
-  //     .finally(() => {
-  //       setUiPleaseWait(false);
-  //     });
-  // }, []);
+
   /// If user not signed-in with wallet - show prompt
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
     return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
   }
 
-  // function changeGreeting(e) {
-  //   e.preventDefault();
-  //   setUiPleaseWait(true);
-  //   const { greetingInput } = e.target.elements;
-  //   helloNEAR.add_blog(greetingInput.value)
-  //     .then(async () => { return helloNEAR.get_user(); })
-  //     .then(setValueFromBlockchain)
-  //     .finally(() => {
-  //       setUiPleaseWait(false);
-  //     });
-  // }
+  let accountId = wallet.accountId;
+  //check user is new or old
+
+  // console.log((accountId));
+  // const user = JSON.parse(valueFromBlockchain)
+  let existed = 0;
+  let new_user = [];
+  // console.log('valueFromBlockchain: ' + JSON.stringify(valueFromBlockchain))
+  if (valueFromBlockchain !== undefined) {
+    valueFromBlockchain.forEach(user => {
+      // console.log('user: ' + JSON.stringify(user.wallet))
+      if (user.wallet === accountId) {
+        existed = 1;
+        new_user.push(user);
+      }
+    });
+
+  }
+  console.log('new_user: ' + JSON.stringify(new_user))
+  // valueFromBlockchain.forEach(user => { console.log(user) })
+
   return (
     <div className='app_container'>
+      {/* <div className={existed === 1 ? 'block' : 'hidden'}> */}
 
       <Nav_menu accountId={wallet} />
-      <Home data={helloNEAR} />
+      <Home user={new_user} listControl={helloNEAR} />
+      {/* </div> */}
+      {/* <div className={existed === 1 ? 'hidden' : 'block'}>
+        <Nav_menu accountId={wallet} />
+        setup user
+      </div> */}
       {/* <SignOutButton accountId={wallet.accountId} onClick={() => wallet.signOut()} /> */}
       {/* <main className={uiPleaseWait ? 'please-wait' : ''}>
         <p>{wallet.accountId}</p>

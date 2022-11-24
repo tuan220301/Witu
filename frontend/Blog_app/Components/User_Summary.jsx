@@ -3,7 +3,7 @@ import { AvaBtn } from "./Ava_Btn";
 import { ava } from "./Nav_menu";
 import { AiOutlineFacebook, AiOutlineInstagram, AiFillLinkedin } from "react-icons/ai"
 export const UserSummary = (user) => {
-    console.log((user.data));
+    // console.log((user.data));
     const accountId = user.data.accountId;
     const avaCss = 'w-[150px] h-[150px] rounded-full';
     return (
