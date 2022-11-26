@@ -12,6 +12,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { AddBlog } from './Blog_app/Components/List_Blog';
 import { Settings } from './Blog_app/Modules/Settings';
 import { AboutUs } from './Blog_app/Modules/About_us';
+import { UserSettings } from './Blog_app/Modules/Setting_Components/User_settings_component';
 
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
@@ -30,6 +31,7 @@ window.onload = async () => {
         <Route path="/" index element={<App isSignedIn={isSignedIn} helloNEAR={helloNEAR} wallet={wallet} />} />
         <Route path="setting" element={<Settings wallet={wallet} />} />
         <Route path="about_us" element={<AboutUs wallet={wallet} />} />
+        <Route path="user" element={<UserSettings />} />
 
       </Routes>
     </BrowserRouter>,

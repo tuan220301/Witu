@@ -4,6 +4,7 @@ import { ava } from './Nav_menu';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { AiOutlineLike, AiOutlineComment, AiOutlineShareAlt } from 'react-icons/ai';
 import ToggleOpt from './Toggle_Options';
+import OptionsBtn from './Option_Button';
 export const ListBlog = ({ user, listControl }) => {
     const [blogs, setBlogs] = React.useState([]);
     React.useEffect(() => {
@@ -33,6 +34,8 @@ export const ListBlog = ({ user, listControl }) => {
             <div className='grid grid-flow-row w-[750px] h-[auto]'>
                 {
                     blogs.map(item => {
+                        console.log('item: ' + JSON.stringify(item))
+                        console.log(item.id_user)
                         return (
                             <div key={item.id} className='w-full p-[15px] bg-white mt-[10px] rounded-2xl'>
                                 <div className='flex items-stretch'>
@@ -43,7 +46,9 @@ export const ListBlog = ({ user, listControl }) => {
                                     </div>
                                     <div className='w-[10%] text-xl'>
                                         <div className='float-right'>
-                                            <ToggleOpt listOpt={listOptions} />
+                                            {/* use id_user to check blog of user */}
+                                            <OptionsBtn listControl={listControl} user={user} id_user={item.id_user} />
+
                                         </div>
                                     </div>
                                 </div>

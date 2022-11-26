@@ -38,7 +38,7 @@ export const Home = ({ user, listControl }) => {
     return (
         <div className="w-full h-full grid grid-cols-10">
             <div className='col-span-3 hidden xl:block'>
-                <UserSummary data={user} />
+                <UserSummary user={user} />
             </div>
             <div className='col-span-10 xl:col-span-4'>
                 <Input_post_component user={user} listControl={listControl} />
@@ -66,7 +66,9 @@ export const Home = ({ user, listControl }) => {
                             listFriendRequest.map(item => {
                                 // console.log('item: ' + JSON.stringify(item))
                                 return (
-                                    <FriendRequest listFriendRequest={item} />
+                                    <div key={item.id}>
+                                        <FriendRequest listFriendRequest={item} />
+                                    </div>
                                 )
                             })
                         }

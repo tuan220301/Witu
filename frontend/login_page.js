@@ -18,19 +18,28 @@ export function SignInPrompt({ greeting, onClick }) {
   );
 }
 
-export function SignOutButton({ accountId, onClick }) {
+export function SignOutButton({ css, accountId, onClick, label }) {
   return (
     // <button style={{ float: 'right' }} onClick={onClick}>
     //   Sign out {accountId}
     // </button>
-    <button className='block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 hover:text-gray-900' onClick={onClick}>
+    <button className={css} onClick={onClick}>
       <div className='flex items-stretch'>
-        <BiLogInCircle className='text-xl mr-[5px]' /><label> Sign Out</label>
+        <BiLogInCircle className='text-xl mr-[5px]' /><label> {label}</label>
       </div>
     </button>
   );
 }
-
+// export function CancleLoginButton({ accountId, onClick, css }) {
+//   return (
+//     // <button style={{ float: 'right' }} onClick={onClick}>
+//     //   Sign out {accountId}
+//     // </button>
+//     <button className={css} onClick={onClick}>
+//       <label> Cancle</label>
+//     </button>
+//   );
+// }
 // export function EducationalText() {
 //   return (
 //     <>

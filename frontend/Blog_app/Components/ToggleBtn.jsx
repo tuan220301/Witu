@@ -92,8 +92,10 @@ export default function ToggleBtn({ wallet, list }) {
                                 //     </div>
                                 // </button>
                                 <SignOutButton
+                                    css={'block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 hover:text-gray-900'}
                                     accountId={wallet.accountId}
-                                    onClick={() => wallet.signOut()} />
+                                    onClick={() => wallet.signOut()}
+                                    label={'Sign Out'} />
                             )}
                         </Menu.Item>
 

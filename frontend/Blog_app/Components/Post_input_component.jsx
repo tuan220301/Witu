@@ -73,21 +73,24 @@ export const Input_post_component = ({ user, listControl }) => {
     const [listUser, setListUser] = useState([]);
     // const dataClone = data.data
 
-    // console.log('user: ' + JSON.stringify(user.id))
+    // console.log('user: ' + JSON.stringify(user))
 
     const date = new Date();
     const publishBtn = (event) => {
         event.preventDefault();
         let datePublish = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         let idUser = 0;
-        user.forEach(user => {
-            // console.log('user: ' + JSON.stringify(user.id));
-            idUser = user.id;
+        user.forEach(item => {
+            console.log('user: ' + JSON.stringify(item.id));
+            idUser = item.id;
         });
-        console.log('inputVal: ' + inputVal);
-        console.log('datePublish: ' + datePublish);
-        console.log('idUser: ' + idUser);
+        // console.log('inputVal: ' + inputVal);
+        // console.log('datePublish: ' + datePublish);
+        // console.log('idUser: ' + idUser);
         listControl.addBlog(inputVal, datePublish, idUser);
+        setTimeout(() => {
+            window.location.reload();
+        }, 2500);
 
     }
     // React.useEffect(() => {

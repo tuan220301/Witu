@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import "notosans-fontface/less/notosans-fontface"; */
+
 * {
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Noto Sans", sans-serif;
 }
 
 

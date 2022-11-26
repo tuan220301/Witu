@@ -6,6 +6,7 @@ import './assets/global.css';
 import { EducationalText, SignInPrompt, SignOutButton } from './login_page';
 import { Nav_menu } from './Blog_app/Components/Nav_menu';
 import { Home } from './Blog_app/Modules/Home';
+import { CreateUser } from './Blog_app/Modules/Create_User';
 
 
 export default function App({ isSignedIn, helloNEAR, wallet }) {
@@ -24,16 +25,9 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   }, []);
 
   /// If user not signed-in with wallet - show prompt
-  if (!isSignedIn) {
-    // Sign-in flow will reload the page later
-    return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
-  }
 
   let accountId = wallet.accountId;
   //check user is new or old
-
-  // console.log((accountId));
-  // const user = JSON.parse(valueFromBlockchain)
   let existed = 0;
   let new_user = [];
   // console.log('valueFromBlockchain: ' + JSON.stringify(valueFromBlockchain))
@@ -47,41 +41,27 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
     });
 
   }
-  console.log('new_user: ' + JSON.stringify(new_user))
-  // valueFromBlockchain.forEach(user => { console.log(user) })
+  if (!isSignedIn) {
+    // Sign-in flow will reload the page later
+    return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
+  }
+  else {
+    if (existed === 1) {
+      return (
+        <div className='app_container'>
+          <Nav_menu accountId={wallet} />
+          <Home user={new_user} listControl={helloNEAR} />
+        </div>
+      );
+    }
 
-  return (
-    <div className='app_container'>
-      {/* <div className={existed === 1 ? 'block' : 'hidden'}> */}
+    return (
+      <div className='app_container'>
+        <div className='flex justify-center items-center h-screen'>
+          <CreateUser wallet={wallet} listControl={helloNEAR} />
+        </div>
+      </div>
+    );
+  }
 
-      <Nav_menu accountId={wallet} />
-      <Home user={new_user} listControl={helloNEAR} />
-      {/* </div> */}
-      {/* <div className={existed === 1 ? 'hidden' : 'block'}>
-        <Nav_menu accountId={wallet} />
-        setup user
-      </div> */}
-      {/* <SignOutButton accountId={wallet.accountId} onClick={() => wallet.signOut()} /> */}
-      {/* <main className={uiPleaseWait ? 'please-wait' : ''}>
-        <p>{wallet.accountId}</p>
-        <h1>
-          The contract says: <span className="greeting">{valueFromBlockchain}</span>
-        </h1>
-        <form className="change">
-          <label>Change greeting123:</label>
-          <div>
-            <input
-              autoComplete="off"
-              defaultValue={valueFromBlockchain}
-              id="greetingInput"
-            />
-            <button>
-              <span>Save</span>
-              <div className="loader"></div>
-            </button>
-          </div>
-        </form>
-      </main> */}
-    </div>
-  );
 }
