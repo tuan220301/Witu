@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react';
 import { BiUserCircle, BiLogInCircle } from 'react-icons/bi';
 import { MdSupportAgent } from 'react-icons/md';
-import { SignOutButton } from '../../login_page';
+import { SignOutButton } from '../../../login_page';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { AvaBtn } from './Ava_Btn';
 import React from 'react';

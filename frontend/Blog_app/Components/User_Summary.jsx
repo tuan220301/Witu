@@ -1,5 +1,5 @@
 import React from "react";
-import { AvaBtn } from "./Ava_Btn";
+import { AvaBtn } from "./Buttons/Ava_Btn";
 import { ava } from "./Nav_menu";
 import { AiOutlineFacebook, AiOutlineInstagram, AiFillLinkedin } from "react-icons/ai"
 export const UserSummary = (user) => {

@@ -2,9 +2,9 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react';
 import { BiUserCircle, BiLogInCircle } from 'react-icons/bi';
 import { MdSupportAgent } from 'react-icons/md';
-import { SignOutButton } from '../../login_page';
+import { SignOutButton } from '../../../login_page';
 import { AvaBtn } from './Ava_Btn';
-import { ava } from './Nav_menu';
+import { ava } from '../Nav_menu';
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }

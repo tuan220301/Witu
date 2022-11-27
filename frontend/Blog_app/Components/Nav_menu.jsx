@@ -7,9 +7,9 @@ import { AiOutlineMessage, AiOutlineMenu } from 'react-icons/ai';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { SignOutButton } from '../../login_page';
 import { ReactDimmer } from "react-dimmer";
-import { Menu } from "./Toggle_menu";
+import { Menu } from "./Buttons/Toggle_menu";
 import { useState } from "react";
-import ToggleBtn from "./ToggleBtn";
+import ToggleBtn from "./Buttons/ToggleBtn";
 export const ava = 'https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6';
 export const Nav_menu = ({ accountId }) => {
     const [isMenuOpen, setMenu] = useState(false);

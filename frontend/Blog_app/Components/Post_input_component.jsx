@@ -6,7 +6,7 @@ import { ReactDimmer } from "react-dimmer";
 import { AddBlog } from "./List_Blog";
 import { BsPencilSquare, BsFileImage, BsCameraVideo, BsCamera } from 'react-icons/bs';
 import { MdOutlineAddReaction } from 'react-icons/md';
-
+import { Link } from "react-router-dom";
 export const Input_post_component = ({ user, listControl }) => {
 
     const upBlog = () => {
@@ -81,16 +81,18 @@ export const Input_post_component = ({ user, listControl }) => {
         let datePublish = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         let idUser = 0;
         user.forEach(item => {
-            console.log('user: ' + JSON.stringify(item.id));
+            // console.log('user: ' + JSON.stringify(item.id));
             idUser = item.id;
         });
+
         // console.log('inputVal: ' + inputVal);
         // console.log('datePublish: ' + datePublish);
         // console.log('idUser: ' + idUser);
+
         listControl.addBlog(inputVal, datePublish, idUser);
         setTimeout(() => {
             window.location.reload();
-        }, 2500);
+        }, 1000);
 
     }
     // React.useEffect(() => {
@@ -144,8 +146,10 @@ export const Input_post_component = ({ user, listControl }) => {
                     </div>
                     <div className="col-span-3">
                         <button className={displayBtnClearImg ? displaytBtnClass : 'hidden'} onClick={removeImg}>Remove Image</button>
-                        <button className={display(inputVal) ? displaytBtnClass : 'hidden'}
-                            onClick={publishBtn}>Publish</button>
+                        <Link to="/">
+                            <button className={display(inputVal) ? displaytBtnClass : 'hidden'}
+                                onClick={publishBtn}>Publish</button>
+                        </Link>
                     </div>
                 </div>
             </div>

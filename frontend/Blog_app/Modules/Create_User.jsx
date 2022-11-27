@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaUserCog } from "react-icons/fa"
 import { SignOutButton } from "../../login_page";
 import { Link } from "react-router-dom";
 import { Required } from "../Components/Required_span";
+import { Loader } from "../Components/Loader";
 export const CreateUser = ({ wallet, listControl }) => {
     // console.log(wallet)
 
@@ -12,28 +13,63 @@ export const CreateUser = ({ wallet, listControl }) => {
     let inputNumberPhone = React.createRef();
     let inputInsta = React.createRef();
     let inputFace = React.createRef();
+    function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
+    const [message, setMessage] = useState('');
+    //validate email
+    const [error, setError] = useState(null);
 
+    const validateEmail = (e) => {
+        if (!isValidEmail(e.target.value)) {
+            setError('Email is invalid');
+        }
+        else {
+            setError(null);
+        }
+        setMessage(e.target.value);
+
+    }
+    const [isLoading, setIsLoading] = useState(false);
     const updateUser = (e) => {
         let fName = inputFirstName.current.value;
         let lName = inputLasttName.current.value;
         let email = inputEmail.current.value;
+        let phoneNumber = inputNumberPhone.current.value;
+        let instagram = inputInsta.current.value;
+        let facebook = inputInsta.current.value;
+        let walletId = wallet.accountId;
+        // console.log(wallet.accountId)
+        if (fName.length === 0 || lName.length === 0 || email.length === 0) {
+            alert('First name, Last name, Email is required')
+        }
+        else {
+            // React.useEffect(() => {
+            //     setIsLoading(true);
+            //     // listControl.addUser(fName, lName, email,walletId , phoneNumber,instagram , facebook);
+            //     setTimeout(() => {
+            //         setIsLoading(false)
+            //     }, 2500);
+            // })
 
-        // if (fName.length === 0 || lName.length === 0 || email.length === 0) {
-        //     alert('First name, Last name, Email is required')
-        // }
-        // else {
-
-        console.log(inputFirstName.current.value)
-
-        console.log(fName.length);
-        console.log(inputLasttName.current.value)
-        console.log(inputEmail.current.value)
-        // console.log(inputNumberPhone.current.value)
-        // console.log(inputInsta.current.value)
-        // console.log(inputFace.current.value)
-        // }
+            // console.log(fName.length);
+            // console.log(inputLasttName.current.value)
+            // console.log(inputEmail.current.value)
+            // console.log(inputNumberPhone.current.value)
+            // console.log(inputInsta.current.value)
+            // console.log(inputFace.current.value)
+        }
     }
+    // const [loading, setLoading] = useState(false)
+    // useEffect(() => {
+    //     setLoading(true);
+    //     setTimeout(() => {
+    //         setLoading(false)
+    //     }, 2000)
+    // }, [])
+
     return (
+        // <Loader open={loading} />
         <form className='w-[80%]'>
             <div className='bg-white shadow-lg p-14 rounded-xl'>
                 <div className='font-bold text-3xl mb-8'>
@@ -63,7 +99,8 @@ export const CreateUser = ({ wallet, listControl }) => {
                             <label className='text-xl mb-3'>Email</label>
                             <Required />
                         </div>
-                        <input type='text' ref={inputEmail} className='w-full p-2 border-black h-12 rounded-md text-xl border-[1px]' required />
+                        <input type='text' ref={inputEmail} onChange={validateEmail} className='w-full p-2 border-black h-12 rounded-md text-xl border-[1px]' required />
+                        {error && <p className="text-red-500">{error}</p>}
                     </div>
                     <div className=''>
                         <div className="flex items-stretch">
@@ -82,8 +119,8 @@ export const CreateUser = ({ wallet, listControl }) => {
                     </div>
                 </div>
                 <div className='flex gap-5'>
-                    <Link to="/" className='px-4 py-3 bg-blue-500 hover:bg-blue-600 rounded-md text-white'>
-                        <button type="submit" onClick={updateUser}>
+                    <Link to="/setting" className='px-4 py-3 bg-blue-500 hover:bg-blue-600 rounded-md text-white'>
+                        <button onClick={updateUser}>
                             Save
                         </button>
                     </Link>
@@ -97,6 +134,7 @@ export const CreateUser = ({ wallet, listControl }) => {
                         label={'Cancle'} />
                 </div>
             </div>
+
 
 
         </form>
