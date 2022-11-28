@@ -1,29 +1,38 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react';
 import { SlOptionsVertical } from 'react-icons/sl';
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../Modal/Modal';
+import useModal from '../Modal/Modal_hook';
+import "../style.css"
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function OptionsBtn({ listControl, user, id_user }) {
-
-    const editBtn = () => {
-
-        // console.log(id_user)
-        // console.log(user)
-        user.forEach(item => {
-            console.log('item: ' + JSON.stringify(item.id))
-            if (id_user === item.id) {
-                console.log('edit')
-            }
-            else {
-                alert('cannot access')
-            }
-        })
+export default function OptionsBtn({ listControl, user, blog }) {
+    const { isShowing, toggle } = useModal();
+    const [option, setOption] = useState();
+    let data = [];
+    let user_name = '';
+    user.forEach(item => {
+        user_name = item.first_name + ' ' + item.last_name
+    })
+    data.push(
+        {
+            "user_name": user_name,
+            "blog": blog
+        }
+    )
+    //0: update 1: delete
+    function editBtn() {
+        setOption(0)
+        toggle(true);
     }
     const deleteBtn = () => {
-        console.log('deleteBtn')
+        setOption(1)
+        // console.log('blog' + JSON.stringify(blog.id))
+        toggle(true);
+
     }
     return (
         <Menu as="div" className="relative inline-block text-left">
@@ -49,12 +58,11 @@ export default function OptionsBtn({ listControl, user, id_user }) {
                         <Menu.Item>
                             {({ active }) => (
                                 <button
-                                    href="#"
                                     className={classNames(
                                         active ? 'bg-gray-100 text-gray-900 w-full' : 'text-gray-700  w-full',
                                         'block px-4 py-2 text-sm  w-full'
                                     )}
-                                    onClick={editBtn}
+                                    onClick={() => editBtn()}
                                 >
                                     Edit
                                 </button>
@@ -80,6 +88,21 @@ export default function OptionsBtn({ listControl, user, id_user }) {
 
 
             </Transition>
+            <Modal
+                title={option === 0 ? 'Edit blog' : 'Delete blog'}
+                isShowing={isShowing}
+                hide={toggle}
+                data={data}
+                listControl={listControl}
+                option={option}
+            />
+            {/* <Modal
+                title={'Delete blog'}
+                isShowing={isDeleteModal}
+                hide={toggle}
+                data={data}
+                listControl={listControl}
+            /> */}
         </Menu>
     )
 }

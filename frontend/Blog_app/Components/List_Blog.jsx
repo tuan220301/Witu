@@ -34,13 +34,7 @@ export const ListBlog = ({ user, listControl }) => {
         }
         // console.log('i: ' + i);
     }
-    // console.log(decreaseListBlog.length)
-    // // if (decreaseListBlog !== undefined) {
-    // decreaseListBlog.forEach(item => {
-    //     console.log('decreaseListBlog: ' + JSON.stringify(item.date));
-    // });
-    // }
-    // const listOptions = ['Edit', 'Delete'];
+
     const likeBtn = () => {
         console.log('like btn');
     }
@@ -72,7 +66,7 @@ export const ListBlog = ({ user, listControl }) => {
                                             <div className='w-[10%] text-xl'>
                                                 <div className='float-right'>
                                                     {/* use id_user to check blog of user */}
-                                                    <OptionsBtn listControl={listControl} user={user} id_user={item.id_user} />
+                                                    <OptionsBtn listControl={listControl} user={user} blog={item} />
 
                                                 </div>
                                             </div>

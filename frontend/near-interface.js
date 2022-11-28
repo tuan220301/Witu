@@ -64,7 +64,7 @@ export class HelloNEAR {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'delete_blog',
-      args: id
+      args: { id }
     })
   }
   async addComment(content, date, id_blog) {
