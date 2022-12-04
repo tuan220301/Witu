@@ -8,7 +8,7 @@ import { UserSettings } from "./Setting_Components/User_settings_component";
 import { SystemSettings } from "./Setting_Components/app_settings_components";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Loader } from "../Components/Loader";
-export const Settings = ({ wallet }) => {
+export const Settings = ({ wallet, controller }) => {
     // console.log(wallet);
     const avaCss = 'w-[200px] h-[200px] rounded-full';
     const [userSettings, setUserSettings] = useState(true);
@@ -63,12 +63,14 @@ export const Settings = ({ wallet }) => {
                                 </button>
                             </div>
                         </div>
-                        <div className="col-span-4">
-                            <div className={userSettings ? 'block' : 'hidden'}>
-                                <UserSettings />
-                            </div>
-                            <div className={userSettings ? 'hidden' : 'block'}>
-                                <SystemSettings />
+                        <div className="col-span-4 ">
+                            <div className="m-auto">
+                                <div className={userSettings ? 'block' : 'hidden'}>
+                                    <UserSettings controller={controller} wallet={wallet} />
+                                </div>
+                                <div className={userSettings ? 'hidden' : 'block'}>
+                                    <SystemSettings />
+                                </div>
                             </div>
                         </div>
                     </div>
