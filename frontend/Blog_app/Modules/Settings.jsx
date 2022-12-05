@@ -29,7 +29,7 @@ export const Settings = ({ wallet, controller }) => {
     }, [])
     return (
         <div >
-            {/* <Nav_menu accountId={wallet} /> */}
+            <Nav_menu accountId={wallet} />
             {loading ? <Loader open={loading} />
                 :
                 <div className="w-full h-full">

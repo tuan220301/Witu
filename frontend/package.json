@@ -43,6 +43,7 @@
     "react-dimmer": "^1.0.7",
     "react-dom": "^18.1.0",
     "react-icons": "^4.6.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.4.3",
     "react-spinners": "^0.13.6",
     "regenerator-runtime": "^0.13.9"

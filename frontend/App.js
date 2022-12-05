@@ -30,10 +30,11 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   //check user is new or old
   let existed = 0;
   let new_user = [];
+  // console.log('accountId: ' + JSON.stringify(accountId))
   // console.log('valueFromBlockchain: ' + JSON.stringify(valueFromBlockchain))
   if (valueFromBlockchain !== undefined) {
     valueFromBlockchain.forEach(user => {
-      // console.log('user: ' + JSON.stringify(user.wallet))
+      // console.log('user: ' + JSON.stringify(user))
       if (user.wallet === accountId) {
         existed = 1;
         new_user.push(user);
@@ -46,6 +47,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
     return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
   }
   else {
+    // console.log(existed)
     if (existed === 1) {
       return (
         <div className='app_container'>

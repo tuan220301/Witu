@@ -3,7 +3,7 @@ import { FaUserCog } from "react-icons/fa"
 import { SignOutButton } from "../../login_page";
 import { Link } from "react-router-dom";
 import { Required } from "../Components/Required_span";
-import { Loader } from "../Components/Loader";
+import ReactModal from "react-modal";
 export const CreateUser = ({ wallet, listControl }) => {
     // console.log(wallet)
 
@@ -31,46 +31,36 @@ export const CreateUser = ({ wallet, listControl }) => {
 
     }
     const [isLoading, setIsLoading] = useState(false);
+    let walletId = wallet.accountId;
+    const [showModal, setShowModal] = React.useState(false);
     const updateUser = (e) => {
+        e.preventDefault();
         let fName = inputFirstName.current.value;
         let lName = inputLasttName.current.value;
         let email = inputEmail.current.value;
         let phoneNumber = inputNumberPhone.current.value;
         let instagram = inputInsta.current.value;
         let facebook = inputInsta.current.value;
-        let walletId = wallet.accountId;
-        // console.log(wallet.accountId)
-        if (fName.length === 0 || lName.length === 0 || email.length === 0) {
-            alert('First name, Last name, Email is required')
-        }
-        else {
-            // React.useEffect(() => {
-            //     setIsLoading(true);
-            //     // listControl.addUser(fName, lName, email,walletId , phoneNumber,instagram , facebook);
-            //     setTimeout(() => {
-            //         setIsLoading(false)
-            //     }, 2500);
-            // })
+        listControl.addUser(fName,lName, email,walletId, phoneNumber,instagram,facebook);
+       
+        setTimeout(() => {
+            setShowModal(true);
+        }, 1000);
 
-            // console.log(fName.length);
+            // console.log('fname: ' + fName);
             // console.log(inputLasttName.current.value)
             // console.log(inputEmail.current.value)
             // console.log(inputNumberPhone.current.value)
             // console.log(inputInsta.current.value)
-            // console.log(inputFace.current.value)
-        }
+            // console.log(walletId)
     }
-    // const [loading, setLoading] = useState(false)
-    // useEffect(() => {
-    //     setLoading(true);
-    //     setTimeout(() => {
-    //         setLoading(false)
-    //     }, 2000)
-    // }, [])
-
+    
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
     return (
         // <Loader open={loading} />
-        <form className='w-[80%]'>
+        <div className='w-[80%]' >
             <div className='bg-white shadow-lg p-14 rounded-xl'>
                 <div className='font-bold text-3xl mb-8'>
                     <div className="flex items-stretch">
@@ -119,25 +109,38 @@ export const CreateUser = ({ wallet, listControl }) => {
                     </div>
                 </div>
                 <div className='flex gap-5'>
-                    <Link to="/setting" className='px-4 py-3 bg-blue-500 hover:bg-blue-600 rounded-md text-white'>
-                        <button onClick={updateUser}>
+                    {/* <Link to="/setting" className='px-4 py-3 bg-blue-500 hover:bg-blue-600 rounded-md text-white'> */}
+                        <button type="submit" className='px-4 py-3 bg-blue-500 hover:bg-blue-600 rounded-md text-white' onClick={updateUser}>
                             Save
                         </button>
-                    </Link>
+                    {/* </Link> */}
                     {/* <button className='px-4 py-3 bg-gray-300 hover:bg-gray-400 rounded-md text-black'>
                         Cancle
                     </button> */}
                     <SignOutButton
-                        css={'px-4 py-3 bg-gray-300 hover:bg-gray-400 rounded-md text-black'}
+                        css={'px-4 py-3 bg-gray-300 hover:bg-gray-400 rounded-md text-black '}
                         accountId={wallet.accountId}
-                        onClick={() => wallet.wallet.signOut()}
+                        onClick={() => {
+                            wallet.wallet.signOut()
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1000);
+                        }}
                         label={'Cancle'} />
                 </div>
             </div>
 
 
-
-        </form>
+            <ReactModal 
+           isOpen={showModal}
+           contentLabel="Minimal Modal Example"
+           className="flex justify-center items-center h-screen">
+            <div className="w-96 h-32 border-[1px] rounded-xl border-black text-center bg-white">
+                <h2 className="text-2xl text-green-400 p-[20]">Create user successfully</h2>
+                <Link to="setting" className="rounded-xl bg-blue-500 text-white font-bold p-[10px]">Continue</Link>
+            </div>
+            </ReactModal>
+        </div>
 
     )
 

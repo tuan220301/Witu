@@ -24,9 +24,9 @@ export function SignOutButton({ css, accountId, onClick, label }) {
     //   Sign out {accountId}
     // </button>
     <button className={css} onClick={onClick}>
-      <div className='flex items-stretch'>
-        <BiLogInCircle className='text-xl mr-[5px]' /><label> {label}</label>
-      </div>
+      {/* <div className='flex items-stretch'> */}
+        {label}
+      {/* </div> */}
     </button>
   );
 }
