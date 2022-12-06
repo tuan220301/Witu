@@ -7,7 +7,7 @@ import { AddBlog } from "./List_Blog";
 import { BsPencilSquare, BsFileImage, BsCameraVideo, BsCamera } from 'react-icons/bs';
 import { MdOutlineAddReaction } from 'react-icons/md';
 import { Link } from "react-router-dom";
-export const Input_post_component = ({ user, listControl }) => {
+export const Input_post_component = ({ listUser, listControl, accountId}) => {
 
     const upBlog = () => {
         setModal((prevState) => !prevState);
@@ -19,6 +19,8 @@ export const Input_post_component = ({ user, listControl }) => {
         console.log('video')
     }
     let displaytBtnClass = 'float-right w-[150px] h-[35px] mr-[10px] bg-[#5596e6] rounded-3xl text-white text-center hover:font-bold';
+    // console.log('accountId: ' + accountId)
+    
     //get value from input of post blog
     const [inputVal, setInputVal] = useState('');
     onTyping = (event) => {
@@ -70,7 +72,7 @@ export const Input_post_component = ({ user, listControl }) => {
     // console.log(data);
 
     //call method in contract
-    const [listUser, setListUser] = useState([]);
+    // const [listUser, setListUser] = useState([]);
     // const dataClone = data.data
 
     // console.log('user: ' + JSON.stringify(user))
@@ -80,7 +82,9 @@ export const Input_post_component = ({ user, listControl }) => {
         event.preventDefault();
         let datePublish = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
         let idUser = 0;
-        user.forEach(item => {
+        const user_clone = listUser.filter(user => user.wallet === accountId)
+        // console.log('id: ' + userId)
+        user_clone.forEach(item => {
             // console.log('user: ' + JSON.stringify(item.id));
             idUser = item.id;
         });

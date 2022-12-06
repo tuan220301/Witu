@@ -6,7 +6,7 @@ import { AiOutlineLike, AiOutlineComment, AiOutlineShareAlt } from 'react-icons/
 import ToggleOpt from './Buttons/Toggle_Options';
 import OptionsBtn from './Buttons/Option_Button';
 import { Loader } from './Loader';
-export const ListBlog = ({ user, listControl }) => {
+export const ListBlog = ({ listUser, listControl }) => {
     let decreaseListBlog = [];
     const [blogs, setBlogs] = React.useState([]);
     const [loading, setLoading] = useState(false)
@@ -21,20 +21,23 @@ export const ListBlog = ({ user, listControl }) => {
             // }, [])
         }, 2000)
     }, [])
-    let nameUser = '';
+    
     //get name of user
-    user.forEach(item => {
-        // console.log('item: ' + JSON.stringify(item));
-        nameUser = item.first_name + ' ' + item.last_name
-    });
+    // user.forEach(item => {
+    //     // console.log('item: ' + JSON.stringify(item));
+    //     nameUser = item.first_name + ' ' + item.last_name
+    // });
     // console.log(blogs.length)
+    // listUser.forEach(user => {
+    //     console.log(user)
+    // })
     for (let i = blogs.length - 1; i >= 0; i--) {
         if (blogs) {
             decreaseListBlog.push(blogs[i]);
         }
         // console.log('i: ' + i);
     }
-
+    
     const likeBtn = () => {
         console.log('like btn');
     }
@@ -53,20 +56,29 @@ export const ListBlog = ({ user, listControl }) => {
                     <div className='grid grid-flow-row w-[750px] h-[auto]'>
                         {
                             decreaseListBlog.map(item => {
-                                // console.log('item: ' + JSON.stringify(item))
+                                console.log('item: ' + JSON.stringify(item))
                                 // console.log(item.id_user)
+                                let user_name = '';
+                                listUser.forEach(user => {
+                                    // user_name = '';
+                                    if(user.id === item.id_user){
+                                        user_name = user.first_name + ' '+ user.last_name
+                                    }
+                                })
+                                item.user_name = user_name;
                                 return (
                                     <div key={item.id} className='w-full p-[15px] bg-white mt-[10px] rounded-2xl'>
                                         <div className='flex items-stretch'>
                                             <div className='w-[10%]'><AvaBtn className={avaCss} srcImg={ava} /></div>
                                             <div className='gird gird-rows-2 w-[80%]'>
-                                                <p>{nameUser}</p>
+                                                
+                                                <p>{item.user_name}</p>
                                                 <p>{item.date}</p>
                                             </div>
                                             <div className='w-[10%] text-xl'>
                                                 <div className='float-right'>
                                                     {/* use id_user to check blog of user */}
-                                                    <OptionsBtn listControl={listControl} user={user} blog={item} />
+                                                    {/* <OptionsBtn listControl={listControl} user={user} blog={item} /> */}
 
                                                 </div>
                                             </div>

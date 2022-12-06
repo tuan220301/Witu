@@ -10,6 +10,7 @@ import { ReactDimmer } from "react-dimmer";
 import { Menu } from "./Buttons/Toggle_menu";
 import { useState } from "react";
 import ToggleBtn from "./Buttons/ToggleBtn";
+import ToggleChat from "./Buttons/Toggle_chat";
 export const ava = 'https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6';
 export const Nav_menu = ({ accountId }) => {
     const [isMenuOpen, setMenu] = useState(false);
@@ -31,7 +32,8 @@ export const Nav_menu = ({ accountId }) => {
                         <IoIosNotificationsOutline />
                     </li>
                     <li className="inline-block text-[35px] p-[10px] rounded-xl hover:bg-[#6ba4e9] hover:text-white">
-                        <AiOutlineMessage />
+                        {/* <AiOutlineMessage /> */}
+                        <ToggleChat />
                     </li>
                 </ul>
             </div>

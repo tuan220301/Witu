@@ -10,14 +10,14 @@ import { CreateUser } from './Blog_app/Modules/Create_User';
 
 
 export default function App({ isSignedIn, helloNEAR, wallet }) {
-  const [valueFromBlockchain, setValueFromBlockchain] = React.useState();
+  const [listUser, setListUser] = React.useState();
 
   const [uiPleaseWait, setUiPleaseWait] = React.useState(true);
 
   // Get blockchian state once on component load
   React.useEffect(() => {
     helloNEAR.get_user()
-      .then(setValueFromBlockchain)
+      .then(setListUser)
       .catch(alert)
       .finally(() => {
         setUiPleaseWait(false);
@@ -31,20 +31,20 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   let existed = 0;
   let new_user = [];
   // console.log('accountId: ' + JSON.stringify(accountId))
-  // console.log('valueFromBlockchain: ' + JSON.stringify(valueFromBlockchain))
-  if (valueFromBlockchain !== undefined) {
-    valueFromBlockchain.forEach(user => {
+  // console.log('listUser: ' + JSON.stringify(listUser))
+  if (listUser !== undefined) {
+    listUser.forEach(user => {
       // console.log('user: ' + JSON.stringify(user))
       if (user.wallet === accountId) {
         existed = 1;
-        new_user.push(user);
+        // new_user.push(user);
       }
     });
 
   }
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
-    return <SignInPrompt greeting={valueFromBlockchain} onClick={() => wallet.signIn()} />;
+    return <SignInPrompt greeting={listUser} onClick={() => wallet.signIn()} />;
   }
   else {
     // console.log(existed)
@@ -52,7 +52,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
       return (
         <div className='app_container'>
           <Nav_menu accountId={wallet} />
-          <Home user={new_user} listControl={helloNEAR} />
+          <Home listUser={listUser} listControl={helloNEAR} accountId={accountId}/>
         </div>
       );
     }
