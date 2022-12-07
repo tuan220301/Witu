@@ -15,7 +15,7 @@ export default function ToggleChat() {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="inline-flex w-[50px] rounded-full  ">
+                <Menu.Button className="">
                     {/* <AvaBtn className={avaCss} srcImg={ava} /> */}
                     <AiOutlineMessage/>
                     {/* <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" /> */}

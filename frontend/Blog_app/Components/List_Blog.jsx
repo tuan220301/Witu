@@ -6,7 +6,7 @@ import { AiOutlineLike, AiOutlineComment, AiOutlineShareAlt } from 'react-icons/
 import ToggleOpt from './Buttons/Toggle_Options';
 import OptionsBtn from './Buttons/Option_Button';
 import { Loader } from './Loader';
-export const ListBlog = ({ listUser, listControl }) => {
+export const ListBlog = ({ listUser, listControl, accountId }) => {
     let decreaseListBlog = [];
     const [blogs, setBlogs] = React.useState([]);
     const [loading, setLoading] = useState(false)
@@ -22,20 +22,10 @@ export const ListBlog = ({ listUser, listControl }) => {
         }, 2000)
     }, [])
     
-    //get name of user
-    // user.forEach(item => {
-    //     // console.log('item: ' + JSON.stringify(item));
-    //     nameUser = item.first_name + ' ' + item.last_name
-    // });
-    // console.log(blogs.length)
-    // listUser.forEach(user => {
-    //     console.log(user)
-    // })
     for (let i = blogs.length - 1; i >= 0; i--) {
         if (blogs) {
             decreaseListBlog.push(blogs[i]);
         }
-        // console.log('i: ' + i);
     }
     
     const likeBtn = () => {
@@ -48,24 +38,26 @@ export const ListBlog = ({ listUser, listControl }) => {
         console.log('share btn');
     }
     const avaCss = 'w-[50px] h-[50px] rounded-full';
-
+    // console.log('accountId: ' + JSON.stringify(accountId))
+    
     return (
         <div>
             {loading ? <Loader open={loading} /> :
-                <div className='flex justify-center items-center mt-[10px]'>
+                <div className='flex justify-center items-center mb-5'>
                     <div className='grid grid-flow-row w-[750px] h-[auto]'>
                         {
                             decreaseListBlog.map(item => {
-                                console.log('item: ' + JSON.stringify(item))
-                                // console.log(item.id_user)
-                                let user_name = '';
-                                listUser.forEach(user => {
-                                    // user_name = '';
+                                item.user_name = '';
+                                item.wallet = '';
+                                listUser.map(user => {
+                                    wallet = '';
+                                    user.check = false;
+                                    // check user is author of blog ? if true show optionBtn and show name of user on blog
                                     if(user.id === item.id_user){
-                                        user_name = user.first_name + ' '+ user.last_name
+                                        item.user_name = user.first_name + ' '+ user.last_name;
+                                        item.wallet = user.wallet
                                     }
                                 })
-                                item.user_name = user_name;
                                 return (
                                     <div key={item.id} className='w-full p-[15px] bg-white mt-[10px] rounded-2xl'>
                                         <div className='flex items-stretch'>
@@ -78,8 +70,9 @@ export const ListBlog = ({ listUser, listControl }) => {
                                             <div className='w-[10%] text-xl'>
                                                 <div className='float-right'>
                                                     {/* use id_user to check blog of user */}
-                                                    {/* <OptionsBtn listControl={listControl} user={user} blog={item} /> */}
-
+                                                    <div className={item.wallet === accountId ? 'block' : 'hidden'}>
+                                                        <OptionsBtn listControl={listControl} userName={item.user_name} blog={item} />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,21 +82,21 @@ export const ListBlog = ({ listUser, listControl }) => {
                                         <div className='h-50px border-t-2 border-[#f4f4f4] pt-3 grid grid-cols-3 '>
                                             <div className='flex justify-center items-center'>
                                                 <div className='flex items-stretch text-xl'>
-                                                    <label className='mr-[5px]' htmlFor="like"><AiOutlineLike /></label>
+                                                    <label className='mr-[5px] text-2xl' htmlFor="like"><AiOutlineLike /></label>
                                                     <input type="button" className='cursor-pointer' id='like' onClick={likeBtn} value={'Like'} />
                                                 </div>
                                             </div>
 
                                             <div className='flex justify-center items-center'>
                                                 <div className='flex items-stretch text-xl cursor-pointer'>
-                                                    <label className='mr-[5px]' htmlFor="cmt"><AiOutlineComment /></label>
+                                                    <label className='mr-[5px] text-2xl' htmlFor="cmt" ><AiOutlineComment /></label>
                                                     <input type="button" className='cursor-pointer' id='cmt' onClick={comment} value={'Comment'} />
                                                 </div>
                                             </div>
 
                                             <div className='flex justify-center items-center'>
                                                 <div className='flex items-stretch text-xl cursor-pointer'>
-                                                    <label className='mr-[5px]' htmlFor="share"><AiOutlineShareAlt /></label>
+                                                    <label className='mr-[5px] text-2xl' htmlFor="share"><AiOutlineShareAlt /></label>
                                                     <input type="button" className='cursor-pointer' id='share' onClick={share} value={'Share'} />
                                                 </div>
                                             </div>

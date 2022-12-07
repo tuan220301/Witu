@@ -9,21 +9,20 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function OptionsBtn({ listControl, user, blog }) {
+export default function OptionsBtn({ listControl, userName, blog }) {
     const { isShowing, toggle } = useModal();
     const [option, setOption] = useState();
     let data = [];
-    let user_name = '';
-    user.forEach(item => {
-        user_name = item.first_name + ' ' + item.last_name
-    })
+    // let user_name = '';
+    
     data.push(
         {
-            "user_name": user_name,
+            "user_name": userName,
             "blog": blog
         }
     )
-    //0: update 1: delete
+    // console.log(data)
+    //0: update - 1: delete
     function editBtn() {
         setOption(0)
         toggle(true);
@@ -96,13 +95,7 @@ export default function OptionsBtn({ listControl, user, blog }) {
                 listControl={listControl}
                 option={option}
             />
-            {/* <Modal
-                title={'Delete blog'}
-                isShowing={isDeleteModal}
-                hide={toggle}
-                data={data}
-                listControl={listControl}
-            /> */}
+           
         </Menu>
     )
 }

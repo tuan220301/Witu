@@ -27,7 +27,7 @@ export const DeleteBlog = ({ blog, hide, listControl }) => {
                 </div>
                 <div className="flex justify-center items-center text-red-400 hover:font-bold">
                     <button className="" onClick={() => {
-                        console.log((id_blog))
+                        // console.log((id_blog))
                         listControl.deleteBlog(id_blog);
                         setTimeout(() => {
                             window.location.reload();

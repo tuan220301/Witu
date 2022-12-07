@@ -28,42 +28,36 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
 
   let accountId = wallet.accountId;
   //check user is new or old
-  let existed = 0;
-  let new_user = [];
-  // console.log('accountId: ' + JSON.stringify(accountId))
-  // console.log('listUser: ' + JSON.stringify(listUser))
+  let new_user;
+  const [exitedUser,setExitedUser] = React.useState(false);
   if (listUser !== undefined) {
-    listUser.forEach(user => {
-      // console.log('user: ' + JSON.stringify(user))
-      if (user.wallet === accountId) {
-        existed = 1;
-        // new_user.push(user);
-      }
-    });
-
-  }
-  if (!isSignedIn) {
-    // Sign-in flow will reload the page later
-    return <SignInPrompt greeting={listUser} onClick={() => wallet.signIn()} />;
-  }
-  else {
-    // console.log(existed)
-    if (existed === 1) {
-      return (
-        <div className='app_container'>
-          <Nav_menu accountId={wallet} />
-          <Home listUser={listUser} listControl={helloNEAR} accountId={accountId}/>
-        </div>
-      );
+    new_user = listUser.filter(user => user.wallet === accountId);
+    if (!isSignedIn) {
+      // Sign-in flow will reload the page later
+      return <SignInPrompt greeting={listUser} onClick={() => wallet.signIn()} />;
     }
-
-    return (
-      <div className='app_container'>
-        <div className='flex justify-center items-center h-screen'>
-          <CreateUser wallet={wallet} listControl={helloNEAR} />
-        </div>
-      </div>
-    );
+    else {
+      // console.log(existed)
+      if (new_user.length !== 0) {
+        return (
+          <div className='app_container'>
+            <Nav_menu accountId={wallet} />
+            <Home listUser={listUser} listControl={helloNEAR} accountId={accountId}/>
+          </div>
+        );
+      }
+  
+      else{
+        return (
+          <div className='app_container'>
+            <div className='flex justify-center items-center h-screen'>
+              <CreateUser wallet={wallet} listControl={helloNEAR} />
+            </div>
+          </div>
+        );
+      }
+    }
   }
+  
 
 }

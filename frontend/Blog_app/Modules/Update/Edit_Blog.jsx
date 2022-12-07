@@ -58,10 +58,10 @@ export const EditBlog = ({ blog, hide, listControl }) => {
                                 </div>
                                 <div className="flex justify-center items-center text-green-400 hover:font-bold">
                                     <button className="" onClick={() => {
-                                        // console.log(item.blog.id)
-                                        // console.log(val)
-                                        // console.log(item.blog.date)
-                                        // console.log(item.blog.id_user)
+                                        // console.log('item.blog.id: ' + item.blog.id)
+                                        // console.log('val: ' + val)
+                                        // console.log('item.blog.date: ' + item.blog.date)
+                                        // console.log("item.blog.id_user: " +item.blog.id_user)
                                         listControl.updateBllog(item.blog.id, val, item.blog.date, item.blog.id_user)
                                         setTimeout(() => {
                                             window.location.reload();

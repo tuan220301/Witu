@@ -48,12 +48,12 @@ export const Home = ({ listUser, listControl ,accountId}) => {
             </div>
             <div className='col-span-10 xl:col-span-4'>
                 <Input_post_component listUser={listUser} listControl={listControl} accountId={accountId} />
-                <ListBlog listUser={listUser} listControl={listControl} />
+                <ListBlog listUser={listUser} listControl={listControl} accountId={accountId} />
             </div>
             <div className='col-span-3 hidden xl:block'>
 
                 <div className="grid grid-flow-row ">
-                    <div className="w-[80%] p-[20px] bg-white rounded-xl m-[10px]">
+                    <div className="w-[80%] p-[20px] bg-white rounded-xl m-5">
                         <label className="text-xl border-b-2 border-[#f4f4f4]">Friend Suggest</label>
                         {
                             listFriendSuggest.map(item => {
@@ -66,7 +66,7 @@ export const Home = ({ listUser, listControl ,accountId}) => {
                             })
                         }
                     </div>
-                    <div className="w-[80%] p-[20px] bg-white rounded-xl m-[10px]">
+                    <div className="w-[80%] p-[20px] bg-white rounded-xl m-5">
                         <label className="text-xl border-b-2 border-[#f4f4f4]">Friend Request</label>
                         {
                             listFriendRequest.map(item => {
