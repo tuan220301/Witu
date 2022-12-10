@@ -1,7 +1,7 @@
 # near-blank-project
 
 This app was initialized with [create-near-app]
-alo
+alo test
 
 # Quick Start
 
