@@ -49,8 +49,32 @@ export default function Chat() {
         </div>
       </div>
       {/* chat list */}
-      <div className="px-[8px]">
-        <div className="text-gray-700">Chat list here</div>
+      <div className="p-[16px]">
+        <div className="flex items-center p-[8px] hover:bg-gray-100 rounded-[8px] overflow-hidden cursor-pointer">
+          <img
+            src="https://top10binhphuoc.vn/wp-content/uploads/2022/10/avatar-gau-cute-1.jpg"
+            alt=""
+            className="rounded-full avatar h-[56px] w-[56px] mr-[12px]"
+          />
+          <div className="flex flex-1 flex-col w-full">
+            <span className="text-gray-700 font-bold text-[16px] w-fit">John Doe</span>
+            <div className="text-gray-500 flex text-[14px] w-[80%]">
+              <span className="truncate ... flex-1 ">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam asdsd
+              </span>
+              {/* time */}
+              <span className="text-[13px]">-1 tuanaa</span>
+            </div>
+            {/* count unseen, seen, unseen, unsent */}
+          </div>
+        </div>
+      </div>
+
+      {/* show all chat button */}
+      <div className="text-gray-700 flex items-center justify-center m-[16px]">
+        <button className="block p-[8px] bg-blue-400 text-white font-normal text-[20px] w-full rounded-[20px] hover:bg-blue-500">
+          Show all chat
+        </button>
       </div>
     </div>
   );

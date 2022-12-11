@@ -30,7 +30,7 @@ export default function ToggleChat() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute z-10 mt-1 w-[350px] origin-top-right rounded-md shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none top-[100%] right-[-200px] bg-white">
+        <Menu.Items className="absolute z-10 mt-1 w-[400px] origin-top-right rounded-[10px] shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none top-[100%] right-[-200px] bg-white">
           <div className="py-1">
             <Menu.Item>{({ active }) => <Chat />}</Menu.Item>
           </div>
