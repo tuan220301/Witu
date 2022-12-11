@@ -3,7 +3,13 @@ import React from "react";
 const ChatItem = (props) => {
   return (
     <div>
-      <div className="flex items-center p-[8px] hover:bg-gray-100 rounded-[8px] overflow-hidden cursor-pointer">
+      <div
+        className={
+          props.isFullSreen
+            ? "flex items-center p-[8px] hover:bg-white rounded-[8px] overflow-hidden cursor-pointer"
+            : "flex items-center p-[8px] hover:bg-gray-100 rounded-[8px] overflow-hidden cursor-pointer"
+        }
+      >
         <img
           src={props.ava || "https://picsum.photos/200"}
           alt=""

@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import ChatList from "./ChatList";
 
-export default function Chat() {
+export default function Chat({ isFullScreen, wallet }) {
   const [query, setQuery] = useState("");
-
-  // console.log(query);
+  var [chatList, setChatList] = useState([]);
+  // var { accountId } = wallet;
+  // useEffect(() => {
+  //   socket.emit("getChatData", { username: accountId });
+  //   socket.on("chatData", ({ chatList }) => {
+  //     console.log(chatList);
+  //     // setChatList(chatList);
+  //   });
+  //   return () => {};
+  // }, []);
   return (
-    <div className="">
+    <div className={isFullScreen ? "h-full" : ""}>
       <div className="pt-[12px] px-[16px] flex justify-between items-center">
         <span className="text-[24px] font-bold text-gray-700">Chat</span>
         <button className="text-gray-500 hover:text-gray-700">
@@ -31,7 +39,11 @@ export default function Chat() {
         <div className="relative">
           <input
             type="text"
-            className="w-full border border-gray-100 rounded-full py-[8px] px-[16px] pl-[40px] text-gray-700 focus:outline-none focus:border-gray-500 text-[20px] bg-gray-100"
+            className={
+              isFullScreen
+                ? "w-full border rounded-full py-[8px] px-[16px] pl-[40px] text-gray-700 focus:outline-none focus:border-gray-1 text-[20px] border-white bg-white"
+                : "w-full border rounded-full py-[8px] px-[16px] pl-[40px] text-gray-700 focus:outline-none focus:border-gray-500 text-[20px] border-gray-100 bg-gray-100"
+            }
             placeholder="Search in chat"
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -55,15 +67,17 @@ export default function Chat() {
       </div>
       {/* chat list */}
       <div className="p-[16px]">
-        <ChatList query={query}></ChatList>
+        <ChatList query={query} isFullScreen={isFullScreen}></ChatList>
       </div>
 
       {/* show all chat button */}
-      <div className="text-gray-700 flex items-center justify-center m-[16px]">
-        <button className="block p-[8px] bg-blue-400 text-white font-normal text-[20px] w-full rounded-[20px] hover:bg-blue-500">
-          Show all chat
-        </button>
-      </div>
+      {!isFullScreen && (
+        <div className="text-gray-700 flex items-center justify-center m-[16px]">
+          <button className="block p-[8px] bg-blue-400 text-white font-normal text-[20px] w-full rounded-[20px] hover:bg-blue-500">
+            Show all chat
+          </button>
+        </div>
+      )}
     </div>
   );
 }
