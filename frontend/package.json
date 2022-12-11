@@ -14,6 +14,7 @@
     "autoprefixer": "^10.4.13",
     "env-cmd": "^10.1.0",
     "nodemon": "^2.0.16",
+    "os-browserify": "^0.3.0",
     "parcel": "^2.6.0",
     "postcss": "^8.4.18",
     "process": "^0.11.10",

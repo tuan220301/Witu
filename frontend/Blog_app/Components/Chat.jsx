@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import ChatList from "./ChatList";
 
 export default function Chat() {
+  const [query, setQuery] = useState("");
+
+  // console.log(query);
   return (
     <div className="">
       <div className="pt-[12px] px-[16px] flex justify-between items-center">
@@ -29,6 +33,7 @@ export default function Chat() {
             type="text"
             className="w-full border border-gray-100 rounded-full py-[8px] px-[16px] pl-[40px] text-gray-700 focus:outline-none focus:border-gray-500 text-[20px] bg-gray-100"
             placeholder="Search in chat"
+            onChange={(e) => setQuery(e.target.value)}
           />
           <span className="absolute left-[10px] top-1/2 translate-y-[-34%]">
             <svg
@@ -50,24 +55,7 @@ export default function Chat() {
       </div>
       {/* chat list */}
       <div className="p-[16px]">
-        <div className="flex items-center p-[8px] hover:bg-gray-100 rounded-[8px] overflow-hidden cursor-pointer">
-          <img
-            src="https://top10binhphuoc.vn/wp-content/uploads/2022/10/avatar-gau-cute-1.jpg"
-            alt=""
-            className="rounded-full avatar h-[56px] w-[56px] mr-[12px]"
-          />
-          <div className="flex flex-1 flex-col w-full">
-            <span className="text-gray-700 font-bold text-[16px] w-fit">John Doe</span>
-            <div className="text-gray-500 flex text-[14px] w-[80%]">
-              <span className="truncate ... flex-1 ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam asdsd
-              </span>
-              {/* time */}
-              <span className="text-[13px]">-1 tuanaa</span>
-            </div>
-            {/* count unseen, seen, unseen, unsent */}
-          </div>
-        </div>
+        <ChatList query={query}></ChatList>
       </div>
 
       {/* show all chat button */}
