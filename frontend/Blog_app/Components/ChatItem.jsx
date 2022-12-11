@@ -5,7 +5,7 @@ const ChatItem = (props) => {
     <div>
       <div
         className={
-          props.isFullSreen
+          props.isFullScreen
             ? "flex items-center p-[8px] hover:bg-white rounded-[8px] overflow-hidden cursor-pointer"
             : "flex items-center p-[8px] hover:bg-gray-100 rounded-[8px] overflow-hidden cursor-pointer"
         }

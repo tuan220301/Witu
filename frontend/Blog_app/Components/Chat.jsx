@@ -45,7 +45,7 @@ export default function Chat({ isFullScreen, wallet }) {
                 : "w-full border rounded-full py-[8px] px-[16px] pl-[40px] text-gray-700 focus:outline-none focus:border-gray-500 text-[20px] border-gray-100 bg-gray-100"
             }
             placeholder="Search in chat"
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value.toLowerCase())}
           />
           <span className="absolute left-[10px] top-1/2 translate-y-[-34%]">
             <svg
