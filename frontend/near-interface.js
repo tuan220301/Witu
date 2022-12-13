@@ -67,12 +67,12 @@ export class HelloNEAR {
       args: { id }
     })
   }
-  async addComment(content, date, id_blog) {
+  async addComment(content, date, id_blog, id_user) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'add_comment',
       args: {
-        content, date, id_blog
+        content, date, id_blog, id_user
       }
     })
   }

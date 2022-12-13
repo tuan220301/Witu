@@ -6,6 +6,7 @@ import { AiOutlineLike, AiOutlineComment, AiOutlineShareAlt } from 'react-icons/
 import ToggleOpt from './Buttons/Toggle_Options';
 import OptionsBtn from './Buttons/Option_Button';
 import { Loader } from './Loader';
+import { CommentComponents } from './Buttons/Comment_toggle';
 export const ListBlog = ({ listUser, listControl, accountId }) => {
     let decreaseListBlog = [];
     const [blogs, setBlogs] = React.useState([]);
@@ -55,7 +56,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                                     // check user is author of blog ? if true show optionBtn and show name of user on blog
                                     if(user.id === item.id_user){
                                         item.user_name = user.first_name + ' '+ user.last_name;
-                                        item.wallet = user.wallet
+                                        item.wallet = user.wallet;
                                     }
                                 })
                                 return (
@@ -79,7 +80,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                                         <div className='h-[auto] w-full text-xl pt-[10px] mb-2'>
                                             {item.content}
                                         </div>
-                                        <div className='h-50px border-t-2 border-[#f4f4f4] pt-3 grid grid-cols-3 '>
+                                        <div className='h-50px border-t-2 border-b-2 border-[#f4f4f4] pt-3 grid grid-cols-3 p-3'>
                                             <div className='flex justify-center items-center'>
                                                 <div className='flex items-stretch text-xl'>
                                                     <label className='mr-[5px] text-2xl' htmlFor="like"><AiOutlineLike /></label>
@@ -101,6 +102,9 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                                                 </div>
                                             </div>
 
+                                        </div>
+                                        <div className='p-2'>
+                                            <CommentComponents listControl={listControl} blog={item} wallet = {accountId} />
                                         </div>
                                     </div>
                                 )

@@ -96,7 +96,7 @@ export const Input_post_component = ({ listUser, listControl, accountId}) => {
         listControl.addBlog(inputVal, datePublish, idUser);
         setTimeout(() => {
             window.location.reload();
-        }, 1000);
+        }, 1500);
 
     }
     // React.useEffect(() => {
@@ -150,10 +150,9 @@ export const Input_post_component = ({ listUser, listControl, accountId}) => {
                     </div>
                     <div className="col-span-3">
                         <button className={displayBtnClearImg ? displaytBtnClass : 'hidden'} onClick={removeImg}>Remove Image</button>
-                        <Link to="/">
+                       
                             <button className={display(inputVal) ? displaytBtnClass : 'hidden'}
                                 onClick={publishBtn}>Publish</button>
-                        </Link>
                     </div>
                 </div>
             </div>

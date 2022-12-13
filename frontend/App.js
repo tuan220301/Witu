@@ -41,7 +41,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
       if (new_user.length !== 0) {
         return (
           <div className='app_container'>
-            <Nav_menu accountId={wallet} />
+            <Nav_menu listUser={listUser} accountId={wallet} />
             <Home listUser={listUser} listControl={helloNEAR} accountId={accountId}/>
           </div>
         );

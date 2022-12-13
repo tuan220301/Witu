@@ -13,7 +13,7 @@ import ToggleBtn from "./Buttons/ToggleBtn";
 import ToggleChat from "./Buttons/Toggle_chat";
 export const ava =
   "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6";
-export const Nav_menu = ({ accountId }) => {
+export const Nav_menu = ({ accountId, listUser }) => {
   const [isMenuOpen, setMenu] = useState(false);
   const handleMenu = () => {
     setMenu((prevState) => !prevState);
