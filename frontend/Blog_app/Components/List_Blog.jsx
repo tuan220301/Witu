@@ -59,7 +59,10 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                 }
               });
               return (
-                <div key={item.id} className="w-full p-[15px] bg-white mt-[10px] rounded-2xl">
+                <div
+                  key={item.id}
+                  className="w-full p-[15px] bg-white mt-[10px] rounded-2xl shadow"
+                >
                   <div className="flex">
                     <div className="mr-[8px]">
                       <AvaBtn className={avaCss} srcImg={ava} />
@@ -79,7 +82,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="h-[auto] w-full text-xl pt-[10px] mb-2">{item.content}</div>
+                  <div className="h-[auto] w-full text-xl mt-[10px] mb-2">{item.content}</div>
                   <div className="border-t-2 border-b-2 border-[#f4f4f4] grid grid-cols-3 gap-[10px] p-[5px]">
                     <div className="flex items-center cursor-pointer justify-center hover:bg-gray-100 rounded-sm">
                       <label className="mr-[5px] text-base" htmlFor="like">

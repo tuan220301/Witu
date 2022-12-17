@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ChatList from "./ChatList";
 
 export default function Chat({ isFullScreen, wallet }) {
@@ -73,9 +74,12 @@ export default function Chat({ isFullScreen, wallet }) {
       {/* show all chat button */}
       {!isFullScreen && (
         <div className="text-gray-700 flex items-center justify-center m-[16px]">
-          <button className="block p-[8px] bg-blue-400 text-white font-normal text-[20px] w-full rounded-[20px] hover:bg-blue-500">
+          <Link
+            to="/chat"
+            className="flex justify-center p-[8px] bg-blue-400 text-white font-normal text-[20px] w-full rounded-[20px] hover:bg-blue-500 items-center"
+          >
             Show all chat
-          </button>
+          </Link>
         </div>
       )}
     </div>

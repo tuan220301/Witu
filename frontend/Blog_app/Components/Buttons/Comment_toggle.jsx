@@ -94,15 +94,15 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
 
   return (
     <div className="grid grid-flow-row">
-      <div className="flex py-3 gap-[8px]">
+      <div className="flex gap-[8px]">
         <AvaBtn className={avaCss} srcImg={ava} />
         <div className="w-full">
           <textarea
             ref={textAreaRef}
             value={val}
             name="textValue"
-            className="text-[15px] w-full rounded-[20px] min-h-[40px] px-[12px] py-[8px] bg-[#f4f4f4] focus:outline-none break-words resize-none border-none break-all"
-            placeholder="Write a comment..."
+            className="text-[15px] w-full rounded-[20px] min-h-[40px] px-[12px] py-[8px] bg-[#f1f2f6] focus:outline-none break-words resize-none border-none break-all"
+            placeholder="Viết bình luận..."
             onChange={onChange}
             rows={1}
           />
@@ -135,10 +135,10 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
       </div>
       <div className="grid grid-flow-row py-[8px]">
         {listCmt ? (
-          <div className="flex gap-[8px] mt-[8px]">
+          <div className="flex gap-[8px]">
             <AvaBtn className={avaCss} srcImg={ava} />
             <div className="grid grid-flow-row w-full ">
-              <div className="bg-[#f4f4f4] px-[16px] py-[8px] rounded-[20px] w-fit">
+              <div className="bg-[#f1f2f6] px-[16px] py-[8px] rounded-[20px] w-fit">
                 <div className="font-bold text-[13px]" htmlFor="">
                   <a rel="stylesheet" href="" title="" className="font-semibold text-[13px]">
                     {fullName}
