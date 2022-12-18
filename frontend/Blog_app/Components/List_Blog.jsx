@@ -11,13 +11,12 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
   let decreaseListBlog = [];
   const [blogs, setBlogs] = React.useState([]);
   const [loading, setLoading] = useState(false);
+  const cssLoading = 'flex justify-center items-center h-screen';
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      // React.useEffect(() => {
       listControl.getBlog().then(setBlogs).catch(alert);
-      // }, [])
     }, 2000);
   }, []);
 
@@ -42,7 +41,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
   return (
     <div>
       {loading ? (
-        <Loader open={loading} />
+        <Loader open={loading} css={cssLoading} />
       ) : (
         <div className="flex justify-center items-center mb-5">
           <div className="grid grid-flow-row w-[750px] h-[auto]">

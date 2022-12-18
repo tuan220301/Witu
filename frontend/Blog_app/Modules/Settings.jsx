@@ -27,10 +27,11 @@ export const Settings = ({ wallet, controller }) => {
             setLoading(false)
         }, 2000)
     }, [])
+    const cssLoading = 'flex justify-center items-center h-screen';
     return (
         <div >
             <Nav_menu accountId={wallet} listUser={listUser} />
-            {loading ? <Loader open={loading} />
+            {loading ? <Loader open={loading} css={cssLoading} />
                 :
                 <div className="w-full h-full">
 
