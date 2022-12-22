@@ -1,13 +1,12 @@
-import 'regenerator-runtime/runtime';
-import React, { useState } from 'react';
+import "regenerator-runtime/runtime";
+import React, { useState } from "react";
 
-import './assets/global.css';
+import "./assets/global.css";
 
-import { EducationalText, SignInPrompt, SignOutButton } from './login_page';
-import { Nav_menu } from './Blog_app/Components/Nav_menu';
-import { Home } from './Blog_app/Modules/Home';
-import { CreateUser } from './Blog_app/Modules/Create_User';
-
+import { EducationalText, SignInPrompt, SignOutButton } from "./login_page";
+import { Home } from "./Blog_app/Modules/Home";
+import { CreateUser } from "./Blog_app/Modules/Create_User";
+import { Menu } from "./Blog_app/Components/Buttons/Toggle_menu";
 
 export default function App({ isSignedIn, helloNEAR, wallet }) {
   const [listUser, setListUser] = React.useState();
@@ -16,7 +15,8 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
 
   // Get blockchian state once on component load
   React.useEffect(() => {
-    helloNEAR.get_user()
+    helloNEAR
+      .get_user()
       .then(setListUser)
       .catch(alert)
       .finally(() => {
@@ -29,28 +29,25 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   let accountId = wallet.accountId;
   //check user is new or old
   let new_user;
-  const [exitedUser,setExitedUser] = React.useState(false);
+  const [exitedUser, setExitedUser] = React.useState(false);
   if (listUser !== undefined) {
-    new_user = listUser.filter(user => user.wallet === accountId);
+    new_user = listUser.filter((user) => user.wallet === accountId);
     if (!isSignedIn) {
       // Sign-in flow will reload the page later
       return <SignInPrompt greeting={listUser} onClick={() => wallet.signIn()} />;
-    }
-    else {
+    } else {
       // console.log(existed)
       if (new_user.length !== 0) {
         return (
-          <div className='app_container'>
-            <Nav_menu listUser={listUser} accountId={wallet} />
-            <Home listUser={listUser} listControl={helloNEAR} accountId={accountId}/>
+          <div className="bg-[#fafafa] w-full flex flex-row h-screen overflow-hidden dark:bg-[#121212] dark:text-[#fafafa]">
+            <Menu listUser={listUser} accountId={wallet} />
+            <Home listUser={listUser} listControl={helloNEAR} accountId={accountId} />
           </div>
         );
-      }
-  
-      else{
+      } else {
         return (
-          <div className='app_container'>
-            <div className='flex justify-center items-center h-screen'>
+          <div className="app_container">
+            <div className="flex justify-center items-center h-screen">
               <CreateUser wallet={wallet} listControl={helloNEAR} />
             </div>
           </div>
@@ -58,6 +55,4 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
       }
     }
   }
-  
-
 }

@@ -7,21 +7,21 @@ import { Loader } from "../Loader";
 import { ListComment } from "../Comment/List_Comment";
 
 export const CommentComponents = ({ blog, listControl, wallet }) => {
-  const avaCss = "w-[32px] h-[32px] rounded-full";
+  const avaCss = "w-[40px] h-[40px] rounded-full";
   const [typing, setTyping] = React.useState("");
   const [listCmt, setListCmt] = React.useState();
   const [userState, setUserState] = React.useState();
   const [loading, setLoading] = React.useState(false);
   const [version, setVersion] = React.useState(0);
 
-  const cssLoading = 'flex justify-center items-center h-52';
+  const cssLoading = "flex justify-center items-center h-52";
 
   // let listUser = [];
   const getData = () => {
     listControl.get_user().then(setUserState).catch(alert);
     listControl.getComment().then(setListCmt).catch(alert);
-  }
-  React.useEffect(getData, [])
+  };
+  React.useEffect(getData, []);
 
   let fullName = "";
   let listUser = [];
@@ -32,25 +32,24 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   }
   let cmtParam = [];
   if (listCmt) {
-    cmtParam = listCmt.filter(cmt => cmt.id_blog === blog.id);
+    cmtParam = listCmt.filter((cmt) => cmt.id_blog === blog.id);
   }
   // console.log(cmtParam);
   const uploadCmt = ({ blog, listControl }) => {
-    console.log('listCmt b4: ' + JSON.stringify(listCmt))
+    console.log("listCmt b4: " + JSON.stringify(listCmt));
     const date = new Date();
     let datePostCmt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     let content = typing;
-    let user = listUser.filter(user => user.wallet === wallet);
+    let user = listUser.filter((user) => user.wallet === wallet);
     setLoading(true);
-    listControl.addComment(content, datePostCmt, blog.id, user[0].id)
+    listControl.addComment(content, datePostCmt, blog.id, user[0].id);
     setTimeout(() => {
       setLoading(false);
       window.location.reload();
       // console.log('listCmt af: ' + JSON.stringify(listCmt));
-      return
-    }, 2000)
+      return;
+    }, 2000);
   };
-
 
   const textAreaRef = useRef(null);
   const resizeTextArea = () => {
@@ -63,29 +62,33 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   };
 
   return (
-    <div className="grid grid-flow-row">
+    <div className="flex flex-col gap-[8px]">
       <div className="flex gap-[8px]">
         <AvaBtn className={avaCss} srcImg={ava} />
         {/* <label htmlFor="">{fullName}</label> */}
-        <div className="w-full flex items-stretch">
+        <div className="w-full flex justify-between items-stretch gap-[8px]">
           <textarea
             ref={textAreaRef}
             value={typing}
             name="textValue"
-            className="text-sm w-full rounded-3xl min-h-10 px-[12px] py-2 bg-[#f1f2f6] focus:outline-none break-words resize-none border-none break-all"
+            className="text-base font-thin w-full rounded-[20px] px-[12px] py-[8px] bg-[#f1f2f6] dark:bg-[#121212] dark:text-[#fafafa] focus:outline-none break-words resize-none border-none break-all hover:bg-gray-200 dark:hover:bg-[#161616] border border-[#5557]"
             placeholder="Viết bình luận..."
             onChange={onChange}
             rows={1}
           />
-          <button className="w-24 h-10 bg-blue-400 rounded-3xl text-xs ml-1 text-white hover:font-bold hover:bg-blue-500"
+          <button
+            className="flex items-center px-[20px] text-center h-[40px] bg-[#5596e6] rounded-full text-white hover:bg-blue-400 dark:bg-[#121212] dark:hover:bg-[#5557] dark:text-[#fafafa] dark:border dark:border-[#5557]"
             onClick={() => uploadCmt({ blog, listControl })}
-          >Bình luận</button>
+          >
+            <span className="w-full">Gửi</span>
+          </button>
         </div>
       </div>
       {loading ? (
         <Loader open={loading} css={cssLoading} />
-      ) : (<ListComment listControl={listControl} cmtParam={cmtParam} listUser={listUser} />)}
+      ) : (
+        <ListComment listControl={listControl} cmtParam={cmtParam} listUser={listUser} />
+      )}
     </div>
-
   );
 };

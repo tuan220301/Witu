@@ -31,7 +31,10 @@ export default function OptionsBtn({ listControl, userName, blog }) {
     toggle(true);
   };
   return (
-    <Menu as="div" className="relative text-center rounded-full hover:bg-gray-100 h-fit">
+    <Menu
+      as="div"
+      className="relative text-center rounded-full hover:bg-gray-100 h-fit dark:hover:bg-[#5557]"
+    >
       <Menu.Button className="w-[36px] h-[36px] text-[15px] flex items-center p-0 justify-center">
         <SlOptions />
       </Menu.Button>

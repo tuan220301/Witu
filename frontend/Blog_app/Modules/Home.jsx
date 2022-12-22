@@ -77,15 +77,12 @@ export const Home = ({ listUser, listControl, accountId }) => {
   const userIsLogin = listUser.filter((item) => item.wallet === accountId);
   // console.log('userIsLogin: ' + JSON.stringify(userIsLogin))
   return (
-    <div className="w-full h-full grid grid-cols-10">
-      <div className="col-span-3 hidden xl:block">
-        <UserSummary user={userIsLogin} />
-      </div>
-      <div className="col-span-10 xl:col-span-4">
+    <div className="w-full h-full flex gap-[16px] flex-col overflow-y-scroll">
+      <div className="w-[680px] mx-auto px-[16px] flex flex-col gap-[12px]">
         <Input_post_component listUser={listUser} listControl={listControl} accountId={accountId} />
         <ListBlog listUser={listUser} listControl={listControl} accountId={accountId} />
       </div>
-      <div className="col-span-3 hidden xl:block">
+      {/* <div className="col-span-3 hidden xl:block">
         <div className="grid grid-flow-row ">
           <div className="w-[80%] p-[20px] bg-white rounded-xl m-5">
             <label className="text-xl border-b-2 border-[#f4f4f4]">Friend Suggest</label>
@@ -110,7 +107,7 @@ export const Home = ({ listUser, listControl, accountId }) => {
             })}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

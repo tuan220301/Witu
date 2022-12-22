@@ -44,7 +44,7 @@ export default function ImageUploader() {
               style={isDragging ? { color: "red" } : null}
               onClick={onImageUpload}
               {...dragProps}
-              className="flex items-center gap-[5px] bg-[#f4f4f4] rounded-xl h-[40px] px-[12px] py-[8px] hover:bg-[#5596e6] hover:text-white cursor-pointer w-fit"
+              className="flex items-center px-[20px] text-center h-[40px] bg-[#5596e6] rounded-xl text-white hover:bg-blue-400 dark:bg-[#121212] dark:hover:bg-[#5557] dark:text-[#fafafa] gap-[5px] border border-[#fafafa] dark:border-[#5557]"
             >
               <BsCamera className="text-xl" />
               <span>Ảnh hoặc video</span>

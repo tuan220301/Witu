@@ -20,7 +20,7 @@ export const Input_post_component = ({ listUser, listControl, accountId }) => {
     console.log("video");
   };
   let displaytBtnClass =
-    "flex items-center px-[20px] text-center h-[40px] bg-[#5596e6] rounded-xl text-white <hover:bg-blue-400></hover:bg-blue-400>";
+    "flex items-center px-[20px] text-center h-[40px] bg-[#5596e6] rounded-xl text-white hover:bg-blue-400 dark:bg-[#121212] dark:hover:bg-[#5557] dark:text-[#fafafa] border border-[#fafafa] dark:border-[#5557]";
   // console.log('accountId: ' + accountId)
 
   //get value from input of post blog
@@ -110,33 +110,22 @@ export const Input_post_component = ({ listUser, listControl, accountId }) => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="flex flex-col w-[750px] h-[auto] bg-white mt-5 rounded-2xl shadow overflow-hidden">
-        {/* <div className="w-full grid grid-cols-3 h-[50px]">
-                    <div className="flex items-stretch text-xl p-[10px] hover:bg-[#f4f4f4] border-r-2 border-[#f4f4f4]">
-                        <BsPencilSquare className='mr-[10px]' /><label className="text-base">Publish</label>
-                    </div>
-                    <div className="flex items-stretch text-xl p-[10px] hover:bg-[#f4f4f4] border-b-2 border-[#f4f4f4]" onClick={upAlbum}>
-                        <BsFileImage className='mr-[10px]' /><label className="text-base">Albums</label>
-                    </div>
-                    <div className="flex items-stretch text-xl p-[10px] hover:bg-[#f4f4f4] border-b-2 border-[#f4f4f4]" onClick={upVideo}>
-                        <BsCameraVideo className='mr-[10px]' /><label className="text-base">Video</label>
-                    </div>
-                </div> */}
-        <div className="flex flex-col w-full bg-white p-[12px] gap-[12px]">
+      <div className="flex flex-col w-full h-[auto] bg-white dark:bg-black dark:text-[#fafafa] mt-5 rounded-2xl shadow overflow-hidden border border-[#fafafa] dark:border-[#5557]">
+        <div className="flex flex-col w-full bg-white dark:bg-black dark:text-[#fafafa] p-[12px] gap-[12px]">
           <div className="flex gap-[8px]">
             <img className="w-[40px] h-[40px] rounded-full" src={ava} alt="ava" />
             <textarea
               ref={textAreaRef}
               value={inputVal}
               name="textValue"
-              className="text-xl font-thin w-full rounded-[20px] px-[12px] py-[8px] bg-[#f1f2f6] focus:outline-none break-words resize-none border-none break-all hover:bg-gray-200"
+              className="text-xl font-thin w-full rounded-[20px] px-[12px] py-[8px] bg-[#f1f2f6] dark:bg-[#121212] dark:text-[#fafafa] focus:outline-none break-words resize-none border-none break-all hover:bg-gray-200 dark:hover:bg-[#161616] border boder-[#fafafa] dark:border-[#5557]"
               placeholder="Bạn đang nghĩ gì thế?"
               onChange={onTyping}
               rows={1}
             />
           </div>
         </div>
-        <div className="flex flex-col gap-[12px] border-t-2 border-[#f4f4f4] p-[12px] pt-0">
+        <div className="flex flex-col gap-[12px] border-t-2 border-[#f4f4f4] dark:border-[#121212] p-[12px] pt-0">
           <div className="flex items-center gap-[12px]">
             <ImageUploader setInputVal={true} />
           </div>

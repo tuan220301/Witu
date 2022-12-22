@@ -11,7 +11,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
   let decreaseListBlog = [];
   const [blogs, setBlogs] = React.useState([]);
   const [loading, setLoading] = useState(false);
-  const cssLoading = 'flex justify-center items-center h-screen';
+  const cssLoading = "flex justify-center items-center h-screen";
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -44,7 +44,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
         <Loader open={loading} css={cssLoading} />
       ) : (
         <div className="flex justify-center items-center mb-5">
-          <div className="grid grid-flow-row w-[750px] h-[auto]">
+          <div className="flex flex-col gap-[12px] w-full h-[auto]">
             {decreaseListBlog.map((item) => {
               item.user_name = "";
               item.wallet = "";
@@ -60,13 +60,13 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
               return (
                 <div
                   key={item.id}
-                  className="w-full p-[15px] bg-white mt-[10px] rounded-2xl shadow"
+                  className="flex flex-col p-[12px] w-full h-[auto] bg-white dark:bg-black dark:text-[#fafafa] rounded-2xl shadow overflow-hidden border dark:border-[#5557] border-[#fafafa]"
                 >
                   <div className="flex">
                     <div className="mr-[8px]">
                       <AvaBtn className={avaCss} srcImg={ava} />
                     </div>
-                    <div className="gird gird-rows-2 w-[80%]">
+                    <div className="flex flex-col items-start">
                       <p className="text-[15px] font-semibold">{item.user_name}</p>
                       <p className="text-[13px]">{item.date}</p>
                     </div>
@@ -82,8 +82,8 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                     </div>
                   </div>
                   <div className="h-[auto] w-full text-xl mt-[10px] mb-2">{item.content}</div>
-                  <div className="border-t-2 border-b-2 border-[#f4f4f4] grid grid-cols-3 gap-[10px] p-[5px]">
-                    <div className="flex items-center cursor-pointer justify-center hover:bg-gray-100 rounded-sm">
+                  <div className="border-t-2 border-b-2 border-[#f4f4f4] dark:border-[#121212] grid grid-cols-3 gap-[10px] p-[5px]">
+                    <div className="flex items-center cursor-pointer justify-center hover:bg-gray-100 rounded-sm dark:hover:bg-[#5557]">
                       <label className="mr-[5px] text-base" htmlFor="like">
                         <AiOutlineLike />
                       </label>
@@ -95,7 +95,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                         value={"Like"}
                       />
                     </div>
-                    <div className="flex items-center cursor-pointer justify-center hover:bg-gray-100 rounded-sm">
+                    <div className="flex items-center cursor-pointer justify-center hover:bg-gray-100 rounded-sm dark:hover:bg-[#5557]">
                       <label className="mr-[5px] text-base" htmlFor="cmt">
                         <AiOutlineComment />
                       </label>
@@ -107,7 +107,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
                         value={"Comment"}
                       />
                     </div>
-                    <div className="flex items-center cursor-pointer justify-center hover:bg-gray-100 rounded-sm">
+                    <div className="flex items-center cursor-pointer justify-center hover:bg-gray-100 rounded-sm dark:hover:bg-[#5557]">
                       <label className="mr-[5px] text-base" htmlFor="share">
                         <AiOutlineShareAlt />
                       </label>
