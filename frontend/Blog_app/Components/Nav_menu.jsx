@@ -25,8 +25,8 @@ export const Nav_menu = ({ accountId, listUser }) => {
         <ul className="w-full h-full flex items-center">
           <li className="inline-block">
             <img
-              src={require("../../assets/imgs/Logo.png")}
-              className="w-[80px] h-[60px]"
+              src={require("../../assets/logo_main.png")}
+              className="w-[80px] h-[80px] fill-black dark:fill-white"
               alt="logo"
             />
           </li>

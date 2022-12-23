@@ -1,14 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Caramel&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 /* @import "notosans-fontface/less/notosans-fontface"; */
 
 * {
   box-sizing: border-box;
   font-family: "Noto Sans", sans-serif;
 }
-
 
 .login_container {
   width: 100%;

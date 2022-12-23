@@ -15,8 +15,18 @@ export const Menu = ({ accountId, listUser }) => {
   return (
     <div className="app-menu flex-1 bg-white dark:bg-black shadow-lg">
       <div className="max-w-[72px] lg:max-w-full min-h-screen p-[8px] flex flex-col gap-[8px] text-[#121212] dark:text-[#fafafa]">
-        <Link to="/" className="block h-[200px] lg:w-[200px]">
-          <img src={require("../../../assets/imgs/Logo.png")} className="" alt="logo" />
+        <Link to="/" className="flex items-center justify-center h-[100px] lg:w-[200px]">
+          <img
+            src={require("../../../assets/logo_main.png")}
+            className="dark:hidden lg:hidden"
+            alt="logo"
+          />
+          <img
+            src={require("../../../assets/logo_main_dark.png")}
+            className="hidden dark:block lg:hidden dark:lg:hidden"
+            alt="logo"
+          />
+          <span className="font-custom1 text-[55px] leading-none hidden lg:block">WiTuSocial</span>
         </Link>
         <Link to="/" className={LinkStyle}>
           <HiHome size={40} />
