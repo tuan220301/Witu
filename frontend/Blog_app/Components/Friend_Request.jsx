@@ -18,7 +18,7 @@ export const FriendRequest = (listFriendRequest) => {
             <div className='p-[5px] ml-[10px]'>
                 <p className='text-xl'>{list.name}</p>
                 <button className='text-xl text-green-400 mr-[15px] hover:font-bold' onClick={accept}>Accept</button>
-                <button className='text-xl text-red-500 hover:font-bold' onClick={cancle}>Cancle</button>
+                <button className='text-xl text-red-500 hover:font-bold' onClick={cancle}>Cancel</button>
             </div>
         </div>
 

@@ -42,7 +42,7 @@ export const CreateUser = ({ wallet, listControl }) => {
         let instagram = inputInsta.current.value;
         let facebook = inputInsta.current.value;
         listControl.addUser(fName,lName, email,walletId, phoneNumber,instagram,facebook);
-       
+
         setTimeout(() => {
             setShowModal(true);
         }, 1000);
@@ -54,7 +54,7 @@ export const CreateUser = ({ wallet, listControl }) => {
             // console.log(inputInsta.current.value)
             // console.log(walletId)
     }
-    
+
     const handleCloseModal = () => {
         setShowModal(false);
     }
@@ -115,7 +115,7 @@ export const CreateUser = ({ wallet, listControl }) => {
                         </button>
                     {/* </Link> */}
                     {/* <button className='px-4 py-3 bg-gray-300 hover:bg-gray-400 rounded-md text-black'>
-                        Cancle
+                        Cancel
                     </button> */}
                     <SignOutButton
                         css={'px-4 py-3 bg-gray-300 hover:bg-gray-400 rounded-md text-black '}
@@ -126,12 +126,12 @@ export const CreateUser = ({ wallet, listControl }) => {
                                 window.location.reload();
                             }, 1000);
                         }}
-                        label={'Cancle'} />
+                        label={'Cancel'} />
                 </div>
             </div>
 
 
-            <ReactModal 
+            <ReactModal
            isOpen={showModal}
            contentLabel="Minimal Modal Example"
            className="flex justify-center items-center h-screen">

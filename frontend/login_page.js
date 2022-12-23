@@ -30,13 +30,13 @@ export function SignOutButton({ css, accountId, onClick, label }) {
     </button>
   );
 }
-// export function CancleLoginButton({ accountId, onClick, css }) {
+// export function CancelLoginButton({ accountId, onClick, css }) {
 //   return (
 //     // <button style={{ float: 'right' }} onClick={onClick}>
 //     //   Sign out {accountId}
 //     // </button>
 //     <button className={css} onClick={onClick}>
-//       <label> Cancle</label>
+//       <label> Cancel</label>
 //     </button>
 //   );
 // }

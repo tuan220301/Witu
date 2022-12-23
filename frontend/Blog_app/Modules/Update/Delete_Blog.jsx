@@ -21,7 +21,7 @@ export const DeleteBlog = ({ blog, hide, listControl }) => {
                             <div className="text-2xl mr-1">
                                 <MdOutlineCancel />
                             </div>
-                            <label className="text-xl cursor-pointer">Cancle</label>
+                            <label className="text-xl cursor-pointer">Cancel</label>
                         </div>
                     </button>
                 </div>
