@@ -10,9 +10,7 @@ import { Menu } from "./Blog_app/Components/Buttons/Toggle_menu";
 
 export default function App({ isSignedIn, helloNEAR, wallet }) {
   const [listUser, setListUser] = React.useState();
-
   const [uiPleaseWait, setUiPleaseWait] = React.useState(true);
-
   // Get blockchian state once on component load
   React.useEffect(() => {
     helloNEAR
@@ -23,9 +21,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
         setUiPleaseWait(false);
       });
   }, []);
-
   /// If user not signed-in with wallet - show prompt
-
   let accountId = wallet.accountId;
   //check user is new or old
   let new_user;

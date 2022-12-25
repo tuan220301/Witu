@@ -80,34 +80,8 @@ export const Home = ({ listUser, listControl, accountId }) => {
     <div className="w-full h-full flex gap-[16px] flex-col overflow-y-scroll">
       <div className="w-[680px] mx-auto px-[16px] flex flex-col gap-[12px]">
         <Input_post_component listUser={listUser} listControl={listControl} accountId={accountId} />
-        <ListBlog listUser={listUser} listControl={listControl} accountId={accountId} />
       </div>
-      {/* <div className="col-span-3 hidden xl:block">
-        <div className="grid grid-flow-row ">
-          <div className="w-[80%] p-[20px] bg-white rounded-xl m-5">
-            <label className="text-xl border-b-2 border-[#f4f4f4]">Friend Suggest</label>
-            {listFriendSuggest.map((item) => {
-              // console.log('item: ' + JSON.stringify(item))
-              return (
-                <div key={item.id}>
-                  <FriendSuggest listFriend={item} />
-                </div>
-              );
-            })}
-          </div>
-          <div className="w-[80%] p-[20px] bg-white rounded-xl m-5">
-            <label className="text-xl border-b-2 border-[#f4f4f4]">Friend Request</label>
-            {listFriendRequest.map((item) => {
-              // console.log('item: ' + JSON.stringify(item))
-              return (
-                <div key={item.id}>
-                  <FriendRequest listFriendRequest={item} />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div> */}
+
     </div>
   );
 };

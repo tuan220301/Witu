@@ -7,25 +7,16 @@ import ToggleOpt from "./Buttons/Toggle_Options";
 import OptionsBtn from "./Buttons/Option_Button";
 import { Loader } from "./Loader";
 import { CommentComponents } from "./Buttons/Comment_toggle";
-export const ListBlog = ({ listUser, listControl, accountId }) => {
+export const ListBlog = ({ listControl, accountId, blogs, users }) => {
   let decreaseListBlog = [];
-  const [blogs, setBlogs] = React.useState([]);
   const [loading, setLoading] = useState(false);
   const cssLoading = "flex justify-center items-center h-screen";
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      listControl.getBlog().then(setBlogs).catch(alert);
-    }, 2000);
-  }, []);
-
   for (let i = blogs.length - 1; i >= 0; i--) {
     if (blogs) {
       decreaseListBlog.push(blogs[i]);
     }
   }
-
+  // console.log('re render blog list')
   const likeBtn = () => {
     console.log("like btn");
   };
@@ -36,8 +27,6 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
     console.log("share btn");
   };
   const avaCss = "w-[40px] h-[40px] rounded-full";
-  // console.log('accountId: ' + JSON.stringify(accountId))
-
   return (
     <div>
       {loading ? (
@@ -48,7 +37,7 @@ export const ListBlog = ({ listUser, listControl, accountId }) => {
             {decreaseListBlog.map((item) => {
               item.user_name = "";
               item.wallet = "";
-              listUser.map((user) => {
+              users.map((user) => {
                 wallet = "";
                 user.check = false;
                 // check user is author of blog ? if true show optionBtn and show name of user on blog

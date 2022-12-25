@@ -12,7 +12,7 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   const [listCmt, setListCmt] = React.useState();
   const [userState, setUserState] = React.useState();
   const [loading, setLoading] = React.useState(false);
-  const [version, setVersion] = React.useState(0);
+  const [updateCmt, setUpdateCmt] = React.useState([]);
 
   const cssLoading = "flex justify-center items-center h-52";
 
@@ -20,8 +20,9 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   const getData = () => {
     listControl.get_user().then(setUserState).catch(alert);
     listControl.getComment().then(setListCmt).catch(alert);
+    setUpdateCmt(listCmt);
   };
-  React.useEffect(getData, []);
+  React.useEffect(getData, [updateCmt]);
 
   let fullName = "";
   let listUser = [];
@@ -36,7 +37,7 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   }
   // console.log(cmtParam);
   const uploadCmt = ({ blog, listControl }) => {
-    console.log("listCmt b4: " + JSON.stringify(listCmt));
+    // console.log("listCmt b4: " + JSON.stringify(listCmt));
     const date = new Date();
     let datePostCmt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     let content = typing;
@@ -45,10 +46,12 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
     listControl.addComment(content, datePostCmt, blog.id, user[0].id);
     setTimeout(() => {
       setLoading(false);
-      window.location.reload();
+      setUpdateCmt(listCmt);
+      setTyping("");
+      // window.location.reload();
       // console.log('listCmt af: ' + JSON.stringify(listCmt));
       return;
-    }, 2000);
+    }, 3000);
   };
 
   const textAreaRef = useRef(null);

@@ -20,7 +20,7 @@ import { Messenger } from "./Blog_app/Modules/Messenger";
 const wallet = new Wallet({ createAccessKeyFor: process.env.CONTRACT_NAME });
 
 // Abstract the logic of interacting with the contract to simplify your flow
-const helloNEAR = new HelloNEAR({ contractId: process.env.CONTRACT_NAME, walletToUse: wallet });
+export const controller = new HelloNEAR({ contractId: process.env.CONTRACT_NAME, walletToUse: wallet });
 
 // Setup on page load
 window.onload = async () => {
@@ -32,9 +32,9 @@ window.onload = async () => {
         <Route
           path="/"
           index
-          element={<App isSignedIn={isSignedIn} helloNEAR={helloNEAR} wallet={wallet} />}
+          element={<App isSignedIn={isSignedIn} helloNEAR={controller} wallet={wallet} />}
         />
-        <Route path="setting" element={<Settings wallet={wallet} controller={helloNEAR} />} />
+        <Route path="setting" element={<Settings wallet={wallet} controller={controller} />} />
         <Route path="about_us" element={<AboutUs wallet={wallet} />} />
         <Route path="user" element={<UserSettings />} />
         <Route path="chat" element={<Messenger wallet={wallet} />} />
