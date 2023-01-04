@@ -1,5 +1,5 @@
 import "regenerator-runtime/runtime";
-import React, { useState } from "react";
+import React from "react";
 
 import "./assets/global.css";
 
@@ -25,7 +25,6 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   let accountId = wallet.accountId;
   //check user is new or old
   let new_user;
-  const [exitedUser, setExitedUser] = React.useState(false);
   if (listUser !== undefined) {
     new_user = listUser.filter((user) => user.wallet === accountId);
     if (!isSignedIn) {
@@ -36,7 +35,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
       if (new_user.length !== 0) {
         return (
           <div className="bg-[#fafafa] w-full flex flex-row h-screen overflow-hidden dark:bg-[#121212] dark:text-[#fafafa]">
-            <Menu listUser={listUser} accountId={wallet} />
+            <Menu listUser={new_user}  />
             <Home listUser={listUser} listControl={helloNEAR} accountId={accountId} />
           </div>
         );
