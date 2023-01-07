@@ -116,7 +116,8 @@ export const CreateUser = ({ wallet, listControl }) => {
                 className="flex justify-center items-center h-screen">
                 <div className="w-96 h-32 border-[1px] rounded-xl border-black text-center bg-white">
                     <h2 className="text-2xl text-green-400 p-[20]">Create user successfully</h2>
-                    <Link to="setting" className="rounded-xl bg-blue-500 text-white font-bold p-[10px]">Continue</Link>
+                    {/* <Link to="/" className="rounded-xl bg-blue-500 text-white font-bold p-[10px]">Continue</Link> */}
+                    <button onClick={() => window.location.reload()}></button>
                 </div>
             </ReactModal>
         </div>

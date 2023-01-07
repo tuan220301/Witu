@@ -62,10 +62,10 @@ export const EditBlog = ({ blog, hide, listControl }) => {
                                         // console.log('val: ' + val)
                                         // console.log('item.blog.date: ' + item.blog.date)
                                         // console.log("item.blog.id_user: " +item.blog.id_user)
-                                        listControl.updateBllog(item.blog.id, val, item.blog.date, item.blog.id_user)
+                                        listControl.updateBllog(item.blog.id, val, item.blog.date, item.blog.id_user, '')
                                         setTimeout(() => {
                                             window.location.reload();
-                                        }, 1000)
+                                        }, 2000)
                                     }}>
                                         <div className="flex items-stretch text-center w-full">
                                             <div className="text-2xl mr-1">

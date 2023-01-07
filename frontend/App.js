@@ -25,7 +25,7 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
   let accountId = wallet.accountId;
   //check user is new or old
   let new_user;
-  // console.log('listUser: ' + JSON.stringify(listUser.length))
+
   if (!isSignedIn) {
     // Sign-in flow will reload the page later
     return <SignInPrompt greeting={listUser} onClick={() => wallet.signIn()} />;

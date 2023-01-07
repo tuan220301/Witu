@@ -34,9 +34,9 @@ window.onload = async () => {
           index
           element={<App isSignedIn={isSignedIn} helloNEAR={controller} wallet={wallet} />}
         />
-        <Route path="setting" element={<Settings wallet={wallet} controller={controller} />} />
+        <Route path="settings" element={<Settings wallet={wallet} controller={controller} />} />
         <Route path="about_us" element={<AboutUs wallet={wallet} />} />
-        <Route path="user" element={<UserSettings />} />
+        <Route path="user" element={<UserSettings controller={controller} wallet={wallet} />} />
         <Route path="chat" element={<Messenger wallet={wallet} />} />
       </Routes>
     </BrowserRouter>,

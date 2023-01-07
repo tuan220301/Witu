@@ -10,8 +10,8 @@ export const DeleteBlog = ({ blog, hide, listControl }) => {
     return (
         <div className="gird grid-flow-row">
             <div className="text-xl p-3">
-                <p>Items you delete can't be restored.</p>
-                <p>Are you sure ?</p>
+                <p>Bài viết sẽ không thể khôi phục lại.</p>
+                <p>Bạn muốn tiếp tục muốn xóa ?</p>
             </div>
             <div className="border-t-2 border-gray-500 p-3 mt-2 grid grid-flow-col">
 
@@ -21,7 +21,7 @@ export const DeleteBlog = ({ blog, hide, listControl }) => {
                             <div className="text-2xl mr-1">
                                 <MdOutlineCancel />
                             </div>
-                            <label className="text-xl cursor-pointer">Cancel</label>
+                            <label className="text-xl cursor-pointer">Hủy</label>
                         </div>
                     </button>
                 </div>
@@ -31,13 +31,13 @@ export const DeleteBlog = ({ blog, hide, listControl }) => {
                         listControl.deleteBlog(id_blog);
                         setTimeout(() => {
                             window.location.reload();
-                        }, 1000)
+                        }, 2000)
                     }}>
                         <div className="flex items-stretch text-center w-full">
                             <div className="text-2xl mr-1">
                                 <AiOutlineDelete />
                             </div>
-                            <label className="text-xl cursor-pointer">Delete</label>
+                            <label className="text-xl cursor-pointer">Xóa</label>
                         </div>
                     </button>
                 </div>

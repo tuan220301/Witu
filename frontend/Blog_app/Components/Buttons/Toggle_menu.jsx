@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiAddToQueue, BiSearch } from "react-icons/bi";
 import { FiSettings, FiMenu } from "react-icons/fi";
-import { HiHome} from "react-icons/hi";
+import { HiHome } from "react-icons/hi";
 import { RiMessengerLine } from "react-icons/ri";
 import Switcher from "../Switcher";
 import { AvaBtn } from "./Ava_Btn";
@@ -11,7 +11,7 @@ import "../style.css";
 import DropUpRender from "./DropUpBtn";
 const LinkStyle =
   "flex justify-center items-center w-[100%] p-[8px] text-[20px] font-medium hover:bg-[#f5f5f5] dark:hover:bg-[#5557] rounded-full";
-export const Menu = ({listUser, wallet }) => {
+export const Menu = ({ listUser, wallet }) => {
   return (
     <div className="app-menu flex-1 bg-white dark:bg-black shadow-lg">
       <div className="max-w-[75px] lg:max-w-full min-h-screen p-[8px] flex flex-col gap-[8px] text-[#121212] dark:text-[#fafafa]">
@@ -52,18 +52,18 @@ export const Menu = ({listUser, wallet }) => {
           <FiSettings size={40} />
           <span className="pl-[12px] w-full hidden lg:block">Cài đặt</span>
         </Link>
-        <Link to="/settings" className={LinkStyle}>
+        <Link to="/user" className={LinkStyle}>
           <AvaBtn
             srcImg={`https://picsum.photos/200`}
             className={`w-[40px] h-[40px] rounded-full border-[2px] border-x-orange-400 border-y-red-500`}
           />
-          <span className="w-full pl-[12px] hidden lg:block">{ listUser[0].first_name + ' ' +listUser[0].last_name}</span>
+          <span className="w-full pl-[12px] hidden lg:block">{listUser[0].first_name + ' ' + listUser[0].last_name}</span>
         </Link>
         <div className="flex items-center w-[100%] p-[12px] text-[20px] font-medium hover:bg-[#f4f4f4cc] rounded-full mt-auto">
-          <DropUpRender color_btn={'white'} name_btn={'Xem thêm'} wallet={wallet}/>  
+          <DropUpRender color_btn={'white'} name_btn={'Xem thêm'} wallet={wallet} />
         </div>
 
-       
+
       </div>
     </div>
   );

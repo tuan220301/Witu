@@ -6,29 +6,25 @@ import { AvaBtn } from "./Ava_Btn";
 import { Loader } from "../Loader";
 import ListComment from "../Comment/List_Comment";
 
-function CommentComponents({ blog, listControl, wallet }) {
+function CommentComponents({ blog, listControl, users, wallet }) {
   const avaCss = "w-[40px] h-[40px] rounded-full";
   const [typing, setTyping] = React.useState("");
   const [listCmt, setListCmt] = React.useState();
-  const [userState, setUserState] = React.useState();
+
   const [loading, setLoading] = React.useState(false);
   const [updateCmt, setUpdateCmt] = React.useState([]);
 
   const cssLoading = "flex justify-center items-center h-52";
-
-  // let listUser = [];
-  const getData = () => {
-    listControl.get_user().then(setUserState).catch(alert);
+  React.useEffect(() => {
     listControl.getComment().then(setListCmt).catch(alert);
-    setUpdateCmt(listCmt);
-  };
-  React.useEffect(getData, [updateCmt]);
+  }, [updateCmt]);
 
+  // console.log('re render comment toggle')
   let listUser = [];
-  if (userState) {
-    let user_clone = userState.filter((user) => user.wallet === wallet);
+  if (users) {
+    let user_clone = users.filter((user) => user.wallet === wallet);
     fullName = user_clone[0].first_name + " " + user_clone[0].last_name;
-    listUser = userState;
+    listUser = users;
   }
   let cmtParam = [];
   if (listCmt) {
@@ -39,7 +35,7 @@ function CommentComponents({ blog, listControl, wallet }) {
   const datePostCmt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
   const content = typing;
   const user = listUser.filter((user) => user.wallet === wallet);
-  console.log('re render list comment')
+  // console.log('re render list comment')
   const uploadCmt = (blog) => {
     //console.log('date: ' + datePostCmt + 'content: ' + content + 'user: ' + user + 'blogId: ' + blog.id) 
     listControl.addComment(content, datePostCmt, blog.id, user[0].id);
@@ -53,11 +49,11 @@ function CommentComponents({ blog, listControl, wallet }) {
   };
 
   const textAreaRef = useRef(null);
-  // const resizeTextArea = () => {
-  //   textAreaRef.current.style.height = "auto";
-  //   textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
-  // };
-  // useEffect(resizeTextArea, [typing]);
+  const resizeTextArea = () => {
+    textAreaRef.current.style.height = "auto";
+    textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
+  };
+  useEffect(resizeTextArea, [typing]);
   const onChange = (e) => {
     e.preventDefault();
     setTyping(e.target.value);

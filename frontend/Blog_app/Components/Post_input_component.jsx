@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { ava } from "./Nav_menu";
 import { useState, useEffect } from "react";
 import ImageUploader from "./ImageUploader";
-import ListBlog  from "./List_Blog";
+import ListBlog from "./List_Blog";
 import { controller } from "../..";
 import { Loader } from "./Loader";
 export const Input_post_component = ({ listUser, listControl, accountId }) => {
@@ -24,8 +24,7 @@ export const Input_post_component = ({ listUser, listControl, accountId }) => {
   const [loading, setLoading] = useState(false);
   const [blogsTempm, setBlogTemps] = useState(<ListBlog />)
   useEffect(() => {
-    const getListBlog = () => { controller.getBlog().then(setBlogs).catch(alert) };
-    getListBlog();
+    controller.getBlog().then(setBlogs).catch(alert)
 
   }, [blogsTempm])
   const date = new Date();

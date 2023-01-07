@@ -1,82 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Nav_menu } from "../Components/Nav_menu";
-import { AvaBtn } from "../Components/Buttons/Ava_Btn";
-import { ava } from "../Components/Nav_menu";
-import { FaUserCog } from "react-icons/fa";
-import { GrSystem } from "react-icons/gr";
-import { UserSettings } from "./Setting_Components/User_settings_component";
-import { SystemSettings } from "./Setting_Components/app_settings_components";
-import ClipLoader from "react-spinners/ClipLoader";
-import { Loader } from "../Components/Loader";
+import { SystemSettings } from './Setting_Components/app_settings_components';
+import { Menu } from "../Components/Buttons/Toggle_menu";
 export const Settings = ({ wallet, controller }) => {
     // console.log(wallet);
-    const avaCss = 'w-[200px] h-[200px] rounded-full';
-    const [userSettings, setUserSettings] = useState(true);
-    const openUserSettings = () => {
-        setUserSettings(true);
-        console.log(userSettings);
-    };
-    const openSystemSettings = () => {
-        setUserSettings(false);
-        console.log(userSettings)
-    };
-    const [loading, setLoading] = useState(false)
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
-    }, [])
-    const cssLoading = 'flex justify-center items-center h-screen';
-    return (
-        <div >
-            <Nav_menu accountId={wallet} listUser={listUser} />
-            {loading ? <Loader open={loading} css={cssLoading} />
-                :
-                <div className="w-full h-full">
+    const [getUser, setGetUser] = React.useState([]);
+    const [getBlogs, setGetBlogs] = React.useState([]);
+    React.useEffect(() => {
+        controller.get_user().then(setGetUser).catch(alert)
+        controller.getBlog().then(setGetBlogs).catch(alert)
 
-                    <div className="grid grid-flow-col p-[10px] h-[90vh]">
-                        <div className="border-[#f4f4f4] border-r-2">
-                            <div className="flex justify-center items-center mt-[20%]">
-                                <AvaBtn className={avaCss} srcImg={ava} />
-                            </div>
-                            <p className="text-center text-2xl mt-[5%] p-[10px] font-bold">{wallet.accountId}</p>
-                            <div className="grid grid-flow-row mt-[20%] text-xl">
-                                <button className=" p-[20px] hover:bg-[#f4f4f4] hover:font-bold"
-                                    onClick={openUserSettings}
-                                >
-                                    <div className="flex justify-center items-center">
-                                        <div className="flex items-stretch">
-                                            <FaUserCog />
-                                            <label className="ml-3">User Settings</label>
-                                        </div>
-                                    </div>
-                                </button>
-                                <button className=" p-[20px] hover:bg-[#f4f4f4] hover:font-bold"
-                                    onClick={openSystemSettings}
-                                >
-                                    <div className="flex justify-center items-center">
-                                        <div className="flex items-stretch">
-                                            <GrSystem />
-                                            <label className="ml-3">System Settings</label>
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="col-span-4 ">
-                            <div className="m-auto">
-                                <div className={userSettings ? 'block' : 'hidden'}>
-                                    <UserSettings controller={controller} wallet={wallet} />
-                                </div>
-                                <div className={userSettings ? 'hidden' : 'block'}>
-                                    <SystemSettings />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    )
+    }, [])
+    if (getUser.length !== 0 && getBlogs.length !== 0) {
+        let user = getUser.filter((u) => u.wallet === wallet.accountId);
+        let blogs = getBlogs.filter((blog) => blog.id_user === user[0].id);
+
+        return (
+            <div className="bg-[#fafafa] w-full flex flex-row h-screen overflow-hidden dark:bg-[#121212] dark:text-[#fafafa]">
+                <Menu listUser={user} wallet={wallet} />
+                <SystemSettings />
+            </div>
+        );
+    }
 }
