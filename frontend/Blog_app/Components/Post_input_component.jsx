@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { ava } from "./Nav_menu";
 import { useState, useEffect } from "react";
 import ImageUploader from "./ImageUploader";
-import { ListBlog } from "./List_Blog";
+import ListBlog  from "./List_Blog";
 import { controller } from "../..";
 import { Loader } from "./Loader";
 export const Input_post_component = ({ listUser, listControl, accountId }) => {
@@ -44,7 +44,7 @@ export const Input_post_component = ({ listUser, listControl, accountId }) => {
       setLoading(false)
       setBlogTemps(blogs);
       setInputVal("");
-    }, 2500);
+    }, 3000);
   };
 
   const [inputVal, setInputVal] = useState("");

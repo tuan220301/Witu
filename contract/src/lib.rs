@@ -24,11 +24,12 @@ pub struct User {
     id: u32,
     first_name: String,
     last_name: String,
-    email: String,
     wallet: String,
     number_phone: String,
     instagram: String,
     facebook: String,
+    birthday: String,
+    avatar: String,
 }
 #[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
 #[serde(crate = "near_sdk::serde")]
@@ -41,11 +42,51 @@ pub struct Comment {
 }
 #[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
 #[serde(crate = "near_sdk::serde")]
+pub struct Notice {
+    id: u32,
+    content: String,
+    date: String,
+    id_blog: u32,
+    id_user: u32,
+    id_comment: u32,
+    id_friend: u32,
+
+}
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
+#[serde(crate = "near_sdk::serde")]
 pub struct Blog {
     id: u32,
     content: String,
     date: String,
     id_user: u32,
+    img_blog: String,
+}
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub struct React{
+    id: u32,
+    id_user: u32,
+    id_blog: u32,
+    id_comment: u32,
+    id_friend: u32,
+    content: String,
+    date: String
+}
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub struct Pending{
+    id: u32,
+    id_user: u32,
+    id_friend: u32,
+    date: String
+}
+#[derive(BorshDeserialize, BorshSerialize, Serialize, Deserialize, Clone)]
+#[serde(crate = "near_sdk::serde")]
+pub struct Friend{
+    id: u32,
+    id_user: u32,
+    id_friend: u32,
+    date: String
 }
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize)]
@@ -53,6 +94,10 @@ pub struct Contract {
     users: Vec<User>,
     blogs: Vec<Blog>,
     comments: Vec<Comment>,
+    notice: Vec<Notice>,
+    pending: Vec<Pending>,
+    friend: Vec<Friend>,
+    react: Vec<React>,
 }
 // Define the default, which automatically initializes the contract
 impl Default for Contract {
@@ -75,6 +120,10 @@ impl Contract {
             users: Vec::new(),
             blogs: Vec::new(),
             comments: Vec::new(),
+            notice: Vec::new(),
+            pending: Vec::new(),
+            react: Vec::new(),
+            friend:Vec::new(),
         }
     }
 
@@ -86,11 +135,12 @@ impl Contract {
         &mut self,
         first_name: String,
         last_name: String,
-        email: String,
-        wallet: String,
         number_phone: String,
         instagram: String,
         facebook: String,
+        avatar: String,
+        wallet: String,
+        birthday: String
     ) {
         let mut id: u32 = 1;
         let user_clone = self.users.clone();
@@ -102,11 +152,12 @@ impl Contract {
             id: id,
             first_name: first_name,
             last_name: last_name,
-            email: email,
             wallet: wallet,
             number_phone: number_phone,
             instagram: instagram,
             facebook: facebook,
+            avatar: avatar,
+            birthday: birthday
         };
         self.users.push(new_user);
     }
@@ -115,20 +166,22 @@ impl Contract {
         id: u32,
         first_name: String,
         last_name: String,
-        email: String,
         wallet: String,
         number_phone: String,
         instagram: String,
         facebook: String,
+        avatar: String,
+        birthday: String
     ) {
         let idx = self.users.iter().position(|o| o.id == id).unwrap();
         self.users[idx].first_name = first_name;
         self.users[idx].last_name = last_name;
-        self.users[idx].email = email;
         self.users[idx].wallet = wallet;
         self.users[idx].number_phone = number_phone;
         self.users[idx].instagram = instagram;
         self.users[idx].facebook = facebook;
+        self.users[idx].avatar = avatar;
+        self.users[idx].birthday = birthday;
     }
     pub fn delete_user(&mut self, id: u32) {
         let index = self.users.iter().position(|o| o.id == id).unwrap();
@@ -137,7 +190,7 @@ impl Contract {
     pub fn get_blog(self) -> Vec<Blog> {
         return self.blogs;
     }
-    pub fn add_blog(&mut self, content: String, date: String, id_user: u32) {
+    pub fn add_blog(&mut self, content: String, date: String, id_user: u32, img_blog: String) {
         let mut id: u32 = 1;
         let blog_clone = self.blogs.clone();
         if blog_clone.len() > 0 {
@@ -149,14 +202,16 @@ impl Contract {
             content: content,
             date: date,
             id_user: id_user,
+            img_blog: img_blog,
         };
         self.blogs.push(new_blog);
     }
 
-    pub fn update_blog(&mut self, id: u32, content: String, date: String, id_user: u32) {
+    pub fn update_blog(&mut self, id: u32, content: String, date: String, id_user: u32, img_blog: String) {
         let idx = self.blogs.iter().position(|o| o.id == id).unwrap();
         self.blogs[idx].content = content;
         self.blogs[idx].date = date;
+        self.blogs[idx].img_blog = img_blog;
     }
     pub fn delete_blog(&mut self, id: u32) {
         let index = self.blogs.iter().position(|o| o.id == id).unwrap();
@@ -190,6 +245,95 @@ impl Contract {
         let index = self.comments.iter().position(|o| o.id == id).unwrap();
         self.comments.remove(index);
     }
+   /*  Notice */
+    pub fn get_notice(self) -> Vec<Notice> {
+        return self.notice;
+    }
+    pub fn add_notice(&mut self, content: String, date: String, id_blog: u32, id_user: u32, id_comment: u32, id_friend: u32) {
+        let mut id: u32 = 1;
+        let notice_clone = self.notice.clone();
+        if notice_clone.len() > 0 {
+            let len = notice_clone.len();
+            id = notice_clone[len - 1].id + 1;
+        }
+        let new_notice: Notice = Notice {
+            id: id,
+            content: content,
+            date: date,
+            id_blog: id_blog,
+            id_user: id_user,
+            id_comment: id_friend,
+            id_friend: id_friend
+        };
+        self.notice.push(new_notice);
+    }
+    /* pub fn update_cmt(&mut self, id: u32, content: String, date: String) {
+        let idx = self.comments.iter().position(|o| o.id == id).unwrap();
+        self.comments[idx].content = content;
+        self.comments[idx].date = date;
+    } */
+    pub fn delete_notice(&mut self, id: u32) {
+        let index = self.notice.iter().position(|o| o.id == id).unwrap();
+        self.notice.remove(index);
+    }
+    
+    /* Pending */
+   pub fn get_pending(self) -> Vec<Pending> {
+        return self.pending;
+    }
+    pub fn add_pending(&mut self,date: String, id_user: u32, id_friend: u32) {
+        let mut id: u32 = 1;
+        let pending_clone = self.pending.clone();
+        if pending_clone.len() > 0 {
+            let len = pending_clone.len();
+            id = pending_clone[len - 1].id + 1;
+        }
+        let new_pending: Pending = Pending {
+            id: id,
+            date: date,
+            id_user: id_user,
+            id_friend: id_friend
+        };
+        self.pending.push(new_pending);
+    }
+    /* pub fn update_cmt(&mut self, id: u32, content: String, date: String) {
+        let idx = self.comments.iter().position(|o| o.id == id).unwrap();
+        self.comments[idx].content = content;
+        self.comments[idx].date = date;
+    } */
+    pub fn delete_pending(&mut self, id: u32) {
+        let index = self.pending.iter().position(|o| o.id == id).unwrap();
+        self.pending.remove(index);
+    }
+
+   /*  Friend */
+    pub fn get_friend(self) -> Vec<Friend> {
+        return self.friend;
+    }
+    pub fn add_friend(&mut self,date: String, id_user: u32, id_friend: u32) {
+        let mut id: u32 = 1;
+        let friend_clone = self.friend.clone();
+        if friend_clone.len() > 0 {
+            let len = friend_clone.len();
+            id = friend_clone[len - 1].id + 1;
+        }
+        let new_friend: Friend = Friend {
+            id: id,
+            date: date,
+            id_user: id_user,
+            id_friend: id_friend
+        };
+        self.friend.push(new_friend);
+    }
+    /* pub fn update_cmt(&mut self, id: u32, content: String, date: String) {
+        let idx = self.comments.iter().position(|o| o.id == id).unwrap();
+        self.comments[idx].content = content;
+        self.comments[idx].date = date;
+    } */
+    pub fn delete_friend(&mut self, id: u32) {
+        let index = self.friend.iter().position(|o| o.id == id).unwrap();
+        self.friend.remove(index);
+    }  
 }
 
 /*

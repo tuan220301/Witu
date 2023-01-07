@@ -1,22 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { AvaBtn } from "./Buttons/Ava_Btn";
 import { ava } from "./Nav_menu";
-import { SlOptionsVertical } from "react-icons/sl";
 import { AiOutlineLike, AiOutlineComment, AiOutlineShareAlt } from "react-icons/ai";
-import ToggleOpt from "./Buttons/Toggle_Options";
 import OptionsBtn from "./Buttons/Option_Button";
-import { Loader } from "./Loader";
 import { CommentComponents } from "./Buttons/Comment_toggle";
-export const ListBlog = ({ listControl, accountId, blogs, users }) => {
-  let decreaseListBlog = [];
-  const [loading, setLoading] = useState(false);
-  const cssLoading = "flex justify-center items-center h-screen";
-  for (let i = blogs.length - 1; i >= 0; i--) {
-    if (blogs) {
-      decreaseListBlog.push(blogs[i]);
-    }
-  }
-  // console.log('re render blog list')
+function ListBlog ({ listControl, accountId, blogs, users }){
+  //function sort dynamic
+  function compareValues(key, order = 'asc') {
+    return function(a, b) {
+      if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+        return 0;
+      }
+      const varA = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
+      const varB = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
+      let comparison = 0;
+      if (varA > varB) {comparison = 1;} 
+      else if (varA < varB) {comparison = -1;}
+      return (
+        (order == 'desc') ? (comparison * -1) : comparison
+      );
+    };
+  } 
+  //sort blog with id descrease
+  blogs.sort(compareValues('id', 'desc')) 
   const likeBtn = () => {
     console.log("like btn");
   };
@@ -29,18 +35,14 @@ export const ListBlog = ({ listControl, accountId, blogs, users }) => {
   const avaCss = "w-[40px] h-[40px] rounded-full";
   return (
     <div>
-      {loading ? (
-        <Loader open={loading} css={cssLoading} />
-      ) : (
-        <div className="flex justify-center items-center mb-5">
+      <div className="flex justify-center items-center mb-5">
           <div className="flex flex-col gap-[12px] w-full h-[auto]">
-            {decreaseListBlog.map((item) => {
+            {blogs.map((item) => {
               item.user_name = "";
               item.wallet = "";
               users.map((user) => {
                 wallet = "";
                 user.check = false;
-                // check user is author of blog ? if true show optionBtn and show name of user on blog
                 if (user.id === item.id_user) {
                   item.user_name = user.first_name + " " + user.last_name;
                   item.wallet = user.wallet;
@@ -60,7 +62,6 @@ export const ListBlog = ({ listControl, accountId, blogs, users }) => {
                       <p className="text-[13px]">{item.date}</p>
                     </div>
                     <div className="ml-auto flex justify-center">
-                      {/* use id_user to check blog of user */}
                       <div className={item.wallet === accountId ? "block" : "hidden"}>
                         <OptionsBtn
                           listControl={listControl}
@@ -117,7 +118,7 @@ export const ListBlog = ({ listControl, accountId, blogs, users }) => {
             })}
           </div>
         </div>
-      )}
     </div>
   );
 };
+export default React.memo(ListBlog)

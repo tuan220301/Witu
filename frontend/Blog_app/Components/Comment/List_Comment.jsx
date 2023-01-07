@@ -1,16 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect,  useState } from "react";
 import OptionsBtn from "../Buttons/Option_Button";
 import { ava } from "../Nav_menu";
 import { AvaBtn } from "../Buttons/Ava_Btn";
-export const ListComment = ({ listControl, cmtParam, listUser }) => {
+function ListComment ({  cmtParam, listUser }){
   //variable for limit or full cmt
   const [fullCmt, setFullCmt] = React.useState(false);
   const [nameBtnCmt, setNameBtnCmt] = React.useState("Mở tất cả bình luận");
   const [check, setCheck] = useState(false);
   // const [listUser, setListUser] = useState([]);
-
+  console.log('re render list comment')
   const avaCss = "w-[38px] h-[38px] rounded-full";
-  let fullName = "";
   // console.log('listUser: ' + JSON.stringify(listUser))
 
   const showFullCmt = (check) => {
@@ -80,3 +79,4 @@ export const ListComment = ({ listControl, cmtParam, listUser }) => {
     </div>
   );
 };
+export default React.memo(ListComment)

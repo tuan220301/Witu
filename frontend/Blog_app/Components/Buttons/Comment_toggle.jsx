@@ -4,7 +4,7 @@ import { ava } from "../Nav_menu";
 import { AvaBtn } from "./Ava_Btn";
 
 import { Loader } from "../Loader";
-import { ListComment } from "../Comment/List_Comment";
+import ListComment from "../Comment/List_Comment";
 
 export const CommentComponents = ({ blog, listControl, wallet }) => {
   const avaCss = "w-[40px] h-[40px] rounded-full";
@@ -24,7 +24,6 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   };
   React.useEffect(getData, [updateCmt]);
 
-  let fullName = "";
   let listUser = [];
   if (userState) {
     let user_clone = userState.filter((user) => user.wallet === wallet);
@@ -36,20 +35,20 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
     cmtParam = listCmt.filter((cmt) => cmt.id_blog === blog.id);
   }
   // console.log(cmtParam);
-  const uploadCmt = ({ blog, listControl }) => {
-    // console.log("listCmt b4: " + JSON.stringify(listCmt));
-    const date = new Date();
-    let datePostCmt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-    let content = typing;
-    let user = listUser.filter((user) => user.wallet === wallet);
-    setLoading(true);
+  const date = new Date();
+  const datePostCmt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+  const content = typing;
+  const user = listUser.filter((user) => user.wallet === wallet);
+
+  const uploadCmt = (event, blog) => {
+    event.preventDefault();
+    //console.log('date: ' + datePostCmt + 'content: ' + content + 'user: ' + user + 'blogId: ' + blog.id) 
     listControl.addComment(content, datePostCmt, blog.id, user[0].id);
+    setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setUpdateCmt(listCmt);
       setTyping("");
-      // window.location.reload();
-      // console.log('listCmt af: ' + JSON.stringify(listCmt));
       return;
     }, 3000);
   };
@@ -61,9 +60,10 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   };
   useEffect(resizeTextArea, [typing]);
   const onChange = (e) => {
+    e.preventDefault();
     setTyping(e.target.value);
   };
-
+  //console.log ('re render')
   return (
     <div className="flex flex-col gap-[8px]">
       <div className="flex gap-[8px]">
@@ -81,7 +81,7 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
           />
           <button
             className="flex items-center px-[20px] text-center h-[40px] bg-[#5596e6] rounded-full text-white hover:bg-blue-400 dark:bg-[#121212] dark:hover:bg-[#5557] dark:text-[#fafafa] dark:border dark:border-[#5557]"
-            onClick={() => uploadCmt({ blog, listControl })}
+            onClick={() => uploadCmt(blog)}
           >
             <span className="w-full">Gửi</span>
           </button>
