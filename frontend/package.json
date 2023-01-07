@@ -36,6 +36,7 @@
     "@near-wallet-selector/nightly-connect": "^7.0.0",
     "@near-wallet-selector/sender": "^7.0.0",
     "@near-wallet-selector/wallet-connect": "^7.0.0",
+    "@popperjs/core": "2.9.1",
     "flowbite": "^1.5.4",
     "flowbite-react": "^0.3.5",
     "near-api-js": "^0.44.2",

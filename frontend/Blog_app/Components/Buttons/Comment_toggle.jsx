@@ -6,7 +6,7 @@ import { AvaBtn } from "./Ava_Btn";
 import { Loader } from "../Loader";
 import ListComment from "../Comment/List_Comment";
 
-export const CommentComponents = ({ blog, listControl, wallet }) => {
+function CommentComponents({ blog, listControl, wallet }) {
   const avaCss = "w-[40px] h-[40px] rounded-full";
   const [typing, setTyping] = React.useState("");
   const [listCmt, setListCmt] = React.useState();
@@ -39,9 +39,8 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   const datePostCmt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
   const content = typing;
   const user = listUser.filter((user) => user.wallet === wallet);
-
-  const uploadCmt = (event, blog) => {
-    event.preventDefault();
+  console.log('re render list comment')
+  const uploadCmt = (blog) => {
     //console.log('date: ' + datePostCmt + 'content: ' + content + 'user: ' + user + 'blogId: ' + blog.id) 
     listControl.addComment(content, datePostCmt, blog.id, user[0].id);
     setLoading(true);
@@ -54,11 +53,11 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
   };
 
   const textAreaRef = useRef(null);
-  const resizeTextArea = () => {
-    textAreaRef.current.style.height = "auto";
-    textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
-  };
-  useEffect(resizeTextArea, [typing]);
+  // const resizeTextArea = () => {
+  //   textAreaRef.current.style.height = "auto";
+  //   textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
+  // };
+  // useEffect(resizeTextArea, [typing]);
   const onChange = (e) => {
     e.preventDefault();
     setTyping(e.target.value);
@@ -95,3 +94,4 @@ export const CommentComponents = ({ blog, listControl, wallet }) => {
     </div>
   );
 };
+export default React.memo(CommentComponents);

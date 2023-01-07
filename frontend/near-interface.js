@@ -14,12 +14,12 @@ export class HelloNEAR {
   //   return await this.wallet.callMethod({ 
   // contractId: this.contractId, method: 'set_greeting', args: { message: greeting } });
   // }
-  async addUser(first_name, last_name, email, wallet, number_phone, instagram, facebook) {
+  async addUser(first_name, last_name, wallet, number_phone, instagram, facebook, birthday, avatar) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'add_user',
       args: {
-        first_name, last_name, email, wallet, number_phone, instagram, facebook
+        first_name, last_name,  wallet, number_phone, instagram, facebook, birthday,avatar
       }
     })
   }
@@ -29,21 +29,21 @@ export class HelloNEAR {
       method: "get_user"
     })
   }
-  async update_user(id, first_name, last_name, email, wallet, number_phone, instagram, facebook) {
+  async update_user(id, first_name, last_name, wallet, number_phone, instagram, facebook, avatar) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'add_blog',
       args: {
-        id, first_name, last_name, email, wallet, number_phone, instagram, facebook
+        id, first_name, last_name, wallet, number_phone, instagram, facebook, avatar
       }
     })
   }
-  async addBlog(content, date, id_user) {
+  async addBlog(content, date, id_user, img_blog) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'add_blog',
       args: {
-        content, date, id_user
+        content, date, id_user, img_blog
       }
     })
   }
@@ -53,11 +53,11 @@ export class HelloNEAR {
       method: "get_blog"
     })
   }
-  async updateBllog(id, content, date, id_user) {
+  async updateBllog(id, content, date, id_user, img_blog) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
       method: 'update_blog',
-      args: { id, content, date, id_user }
+      args: { id, content, date, id_user, img_blog }
     })
   }
   async deleteBlog(id) {

@@ -37,8 +37,8 @@ export const Input_post_component = ({ listUser, listControl, accountId }) => {
     user_clone.forEach((item) => {
       idUser = item.id;
     });
-
-    listControl.addBlog(inputVal, datePublish, idUser);
+    let img_blog = '';
+    listControl.addBlog(inputVal, datePublish, idUser, img_blog);
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
