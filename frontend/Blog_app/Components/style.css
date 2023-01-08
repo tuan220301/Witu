@@ -15,19 +15,20 @@
 .app-menu {
   color: #000;
   height: 100vh;
-  width: 20rem;
+  width: 25rem;
   background-color: #fff;
-  z-index: 200;
+  z-index: 150;
 
   transform: translateX(-100%);
   transition: 0.3s;
-
+  /* border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px; */
+  border-radius: 20px;
   position: fixed;
   left: 0;
   top: 0;
 
-  display: flex;
-  justify-content: center;
+
 }
 
 .menu-open {
@@ -36,7 +37,10 @@
 }
 
 .dimmer-active {
-  background: unset !important;
+  /* background: unset !important; */
+  width: 300px;
+  height: 100vh;
+  background-color: red;
 }
 
 .modal {
@@ -49,7 +53,7 @@
   min-width: 20rem;
   /* min-height: 25rem; */
   /* background-color: rgb(228, 228, 228); */
-  border-radius: 10px;
+  border-radius: 30px;
   z-index: 200;
   display: flex;
   flex-direction: column;

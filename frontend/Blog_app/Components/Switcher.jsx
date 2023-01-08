@@ -12,13 +12,14 @@ export default function Switcher() {
   };
 
   return (
-    <>
+    <div>
       <DarkModeSwitch
         style={{ height: 30, width: 30 }}
         checked={darkSide}
         onChange={toggleDarkMode}
         size={30}
       />
-    </>
+      {/* <span className="pl-[12px] text-left w-full hidden lg:block">Chuyển chủ đề</span> */}
+    </div>
   );
 }

@@ -16,7 +16,7 @@ export const Settings = ({ wallet, controller }) => {
 
         return (
             <div className="bg-[#fafafa] w-full flex flex-row h-screen overflow-hidden dark:bg-[#121212] dark:text-[#fafafa]">
-                <Menu listUser={user} wallet={wallet} />
+                <Menu listUser={user} wallet={wallet} controller={controller} />
                 <SystemSettings />
             </div>
         );

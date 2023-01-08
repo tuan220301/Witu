@@ -2,30 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiAddToQueue, BiSearch } from "react-icons/bi";
-import { FiSettings, FiMenu } from "react-icons/fi";
+import { FiSettings } from "react-icons/fi";
 import { HiHome } from "react-icons/hi";
 import { RiMessengerLine } from "react-icons/ri";
-import Switcher from "../Switcher";
+
 import { AvaBtn } from "./Ava_Btn";
 import "../style.css";
 import DropUpRender from "./DropUpBtn";
 import { DrawerSearch } from "../Modal/Drawer_Menu";
 import { ReactDimmer } from "react-dimmer";
+import { SignOutButton } from "../../../login_page";
+import Switcher from "../Switcher";
+
 const LinkStyle =
   "flex justify-center items-center w-[100%] p-[8px] text-[20px] font-medium hover:bg-[#f5f5f5] dark:hover:bg-[#5557] rounded-full";
 export const Menu = ({ listUser, wallet }) => {
-
   const [drawSearch, setDrawSearch] = React.useState(false);
   const [option, setOption] = React.useState('');
   const handleMenu = () => {
     setDrawSearch(true);
     setOption('search')
   };
-  const notieMenu = () => {
+  const noticMenu = () => {
     setDrawSearch(true);
     // setDrawSearch((prevState) => !prevState);
     setOption('notice')
   }
+
   return (
     <div className="flex-1 bg-white dark:bg-black shadow-lg">
       <div className="max-w-[80px] lg:max-w-full min-h-screen p-[8px] flex flex-col gap-[8px] text-[#121212] dark:text-[#fafafa]">
@@ -51,17 +54,18 @@ export const Menu = ({ listUser, wallet }) => {
           <BiSearch size={40} />
           <span className="pl-[12px] w-full text-left hidden lg:block">Tìm kiếm</span>
         </button>
-        <Link to="/posts" className={LinkStyle}>
-          <BiAddToQueue size={40} />
-          <span className="pl-[12px] w-full hidden lg:block">Posts</span>
-        </Link>
+
         <Link to="/chat" className={LinkStyle}>
           <RiMessengerLine size={40} />
           <span className="pl-[12px] w-full hidden lg:block">Tin nhắn</span>
         </Link>
-        <button className={LinkStyle} onClick={notieMenu}>
+        <button className={LinkStyle} onClick={noticMenu}>
           <AiOutlineHeart size={40} />
           <span className="pl-[12px] text-left w-full hidden lg:block">Thông báo</span>
+        </button>
+        <button className={LinkStyle} >
+          <Switcher />
+          <span className="pl-[12px] text-left w-full hidden lg:block">Chuyển chủ đề</span>
         </button>
         <Link to="/settings" className={LinkStyle}>
           <FiSettings size={40} />
@@ -74,9 +78,16 @@ export const Menu = ({ listUser, wallet }) => {
           />
           <span className="w-full pl-[12px] hidden lg:block">{listUser[0].first_name + ' ' + listUser[0].last_name}</span>
         </Link>
+
         <div className="flex items-center w-[100%] p-[12px] text-[20px] font-medium hover:bg-[#f4f4f4cc] rounded-full mt-auto">
-          <DropUpRender color_btn={'white'} name_btn={'Xem thêm'} wallet={wallet} />
+          {/* <DropUpRender color_btn={'white'} name_btn={'Xem thêm'} wallet={wallet} /> */}
+          <SignOutButton
+            css={'block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 hover:text-gray-900'}
+            accountId={wallet.accountId}
+            onClick={() => wallet.signOut()}
+            label={'Sign Out'} />
         </div>
+
         <DrawerSearch isSearchOpen={drawSearch} option={option} listUser={listUser} wallet={wallet} />
         <ReactDimmer
           isOpen={drawSearch}
@@ -85,6 +96,7 @@ export const Menu = ({ listUser, wallet }) => {
           // blur={1.5}
           className="menu-backgroud"
         />
+
       </div>
 
     </div>
