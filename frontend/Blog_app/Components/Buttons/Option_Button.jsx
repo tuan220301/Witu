@@ -47,14 +47,16 @@ export default function OptionsBtn({ listControl, userName, blog }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-1 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-1 w-56 origin-top-right rounded-md bg-white dark:bg-[#121212] dark:text-[#fafafa] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden dark:border-[#5557] dark:border">
           <div className="w-full text-center">
             <Menu.Item>
               {({ active }) => (
                 <button
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900 w-full" : "text-gray-700  w-full",
-                    "block px-4 py-2 text-sm  w-full"
+                    active
+                      ? "bg-gray-100 text-gray-900 dark:bg-[#121212] dark:hover:bg-[#5557] w-full"
+                      : "text-gray-700 w-full dark:bg-[#121212] hover:bg-[#5557]",
+                    "block px-4 py-2 text-sm  w-full dark:hover:bg-[#5557] dark:text-[#fafafa]"
                   )}
                   onClick={() => editBtn()}
                 >
@@ -67,8 +69,10 @@ export default function OptionsBtn({ listControl, userName, blog }) {
                 <button
                   href="#"
                   className={classNames(
-                    active ? "bg-gray-100 text-gray-900 w-full" : "text-gray-700  w-full",
-                    "block px-4 py-2 text-sm  w-full"
+                    active
+                      ? "bg-gray-100 text-gray-900 dark:bg-[#121212] dark:hover:bg-[#5557] w-full"
+                      : "text-gray-700 w-full",
+                    "block px-4 py-2 text-sm  w-full dark:hover:bg-[#5557] dark:text-[#fafafa]"
                   )}
                   onClick={deleteBtn}
                 >

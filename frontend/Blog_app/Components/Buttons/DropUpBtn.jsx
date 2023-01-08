@@ -10,7 +10,7 @@ const Dropdown = ({ color, name_btn, wallet }) => {
   const popoverDropdownRef = React.createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "top-end"
+      placement: "top-end",
     });
     setDropdownPopoverShow(true);
   };
@@ -19,42 +19,41 @@ const Dropdown = ({ color, name_btn, wallet }) => {
   };
   // bg colors
   let bgColor;
-  color === "white"
-    ? (bgColor = "bg-slate-700")
-    : (bgColor = "bg-" + color + "-500");
+  color === "white" ? (bgColor = "bg-slate-700") : (bgColor = "bg-" + color + "-500");
   return (
     <>
-      <div className="flex flex-wrap">
-        <div className="w-[200px]" >
-          <div className="relative inline-flex align-middle w-full">
+      <div className="flex w-full">
+        <div className="w-full">
+          <div className="relative inline-flex align-middle w-full text-[20px] text-[#121212] ">
             <button
-              className="text-black w-full"
+              className="text-black w-full dark:text-[#fafafa] "
               type="button"
               ref={btnDropdownRef}
               onClick={() => {
-                dropdownPopoverShow
-                  ? closeDropdownPopover()
-                  : openDropdownPopover();
+                dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
               }}
             >
               {name_btn}
             </button>
-            <div ref={popoverDropdownRef} className={
-              (dropdownPopoverShow ? "block " : "hidden ") +
-              (color === "white" ? "bg-white " : bgColor + " ") +
-              "text-base z-50 float-left py-2 list-none text-left rounded shadow-lg mb-1"
-            }>
-              <div className="flex items-stretch">
-                <span className="w-full text-lg pl-[12px] hidden lg:block" id="theme">Chuyển màu chủ đề</span>
+            <div
+              ref={popoverDropdownRef}
+              className={
+                (dropdownPopoverShow ? "block " : "hidden ") +
+                "text-base z-50 p-[10px] list-none rounded shadow-lg w-full transform transition-all duration-300 inset-0 translate-y-[50px] dark:bg-[#222] dark:text-[#fff] min-w-max-content border dark:border-[#5557] border-[#fafafa]"
+              }
+            >
+              <div className="flex items-center w-[100%] p-[8px] text-[20px] font-medium hover:bg-[#f5f5f5] dark:hover:bg-[#5557] rounded-full cursor-pointer">
                 <Switcher />
+                <span className="ml-[12px]">Chuyển chủ đề</span>
               </div>
-
-              <div className="h-0 my-2 border border-solid border-t-0 border-slate-800 opacity-25" />
               <SignOutButton
-                css={'block w-full px-4 py-2 text-left text-sm hover:bg-gray-100 hover:text-gray-900'}
+                css={
+                  "flex gap-[12px] items-center w-[100%] p-[8px] text-[20px] font-medium hover:bg-[#f5f5f5] dark:hover:bg-[#5557] rounded-full"
+                }
                 accountId={wallet.accountId}
                 onClick={() => wallet.signOut()}
-                label={'Sign Out'} />
+                label={"Sign Out"}
+              />
             </div>
           </div>
         </div>
