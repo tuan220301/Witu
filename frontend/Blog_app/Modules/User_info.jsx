@@ -13,7 +13,7 @@ function UserView({ user, blogs, listControl, wallet }) {
                     </div>
                     <div className="w-[75%]">
                         <div className="flex items-stretch">
-                            <span className="text-lg p-3 hover:font-bold">{user[0].first_name + ' ' + user[0].last_name}</span>
+                            <span className="text-lg p-3 cursor-pointer hover:font-bold">{user[0].first_name + ' ' + user[0].last_name}</span>
                             <button className="text-lg flex items-stretch p-3 rounded-lg bg-slate-300 hover:bg-slate-400"
                             >
                                 Chỉnh sửa trang cá nhân
@@ -24,12 +24,12 @@ function UserView({ user, blogs, listControl, wallet }) {
                             </button>
                         </div>
                         <div className="flex items-stretch p-3 text-lg">
-                            <span className="mr-3 hover:font-bold">{blogs.length + ' bài viết'}</span>
-                            <span className="mr-3 hover:font-bold">{'facebook: ' + user[0].facebook}</span>
-                            <span className="mr-3 hover:font-bold">{'instaram: ' + user[0].instagram}</span>
+                            <span className="mr-3 cursor-pointer hover:font-bold">{blogs.length + ' bài viết'}</span>
+                            <span className="mr-3 cursor-pointer hover:font-bold">{'facebook: ' + user[0].facebook}</span>
+                            <span className="mr-3 cursor-pointer hover:font-bold">{'instaram: ' + user[0].instagram}</span>
                         </div>
                         <div className="p-3 text-lg">
-                            <span className="hover:font-bold">{'Ngày sinh: ' + user[0].birthday}</span>
+                            <span className="cursor-pointer hover:font-bold">{'Ngày sinh: ' + user[0].birthday}</span>
 
                         </div>
                     </div>

@@ -13,16 +13,18 @@
 }
 
 .app-menu {
+  color: #000;
   height: 100vh;
-  width: fit-content;
+  width: 20rem;
+  background-color: #fff;
   z-index: 200;
-  /*
-  transform: translateX(-100%);
-  transition: 0.3s; */
 
-  /* position: fixed;
+  transform: translateX(-100%);
+  transition: 0.3s;
+
+  position: fixed;
   left: 0;
-  top: 0; */
+  top: 0;
 
   display: flex;
   justify-content: center;
@@ -30,6 +32,11 @@
 
 .menu-open {
   transform: translateX(0%);
+  /* margin-left: 300px; */
+}
+
+.dimmer-active {
+  background: unset !important;
 }
 
 .modal {

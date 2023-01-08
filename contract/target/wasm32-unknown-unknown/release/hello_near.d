@@ -1,1 +1,1 @@
-/home/tuannguyeen/home/witu/contract/target/wasm32-unknown-unknown/release/hello_near.wasm: /home/tuannguyeen/home/witu/contract/src/lib.rs
+/home/tuan/FinalProject/Witu/contract/target/wasm32-unknown-unknown/release/hello_near.wasm: /home/tuan/FinalProject/Witu/contract/src/lib.rs

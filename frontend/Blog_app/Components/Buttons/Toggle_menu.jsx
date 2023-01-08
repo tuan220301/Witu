@@ -9,12 +9,26 @@ import Switcher from "../Switcher";
 import { AvaBtn } from "./Ava_Btn";
 import "../style.css";
 import DropUpRender from "./DropUpBtn";
+import { DrawerSearch } from "../Modal/Drawer_Menu";
+import { ReactDimmer } from "react-dimmer";
 const LinkStyle =
   "flex justify-center items-center w-[100%] p-[8px] text-[20px] font-medium hover:bg-[#f5f5f5] dark:hover:bg-[#5557] rounded-full";
 export const Menu = ({ listUser, wallet }) => {
+
+  const [drawSearch, setDrawSearch] = React.useState(false);
+  const [option, setOption] = React.useState('');
+  const handleMenu = () => {
+    setDrawSearch(true);
+    setOption('search')
+  };
+  const notieMenu = () => {
+    setDrawSearch(true);
+    // setDrawSearch((prevState) => !prevState);
+    setOption('notice')
+  }
   return (
-    <div className="app-menu flex-1 bg-white dark:bg-black shadow-lg">
-      <div className="max-w-[75px] lg:max-w-full min-h-screen p-[8px] flex flex-col gap-[8px] text-[#121212] dark:text-[#fafafa]">
+    <div className="flex-1 bg-white dark:bg-black shadow-lg">
+      <div className="max-w-[80px] lg:max-w-full min-h-screen p-[8px] flex flex-col gap-[8px] text-[#121212] dark:text-[#fafafa]">
         <Link to="/" className="flex items-center justify-center h-[100px] lg:w-[250px]">
           <img
             src={require("../../../assets/logo_main.png")}
@@ -32,10 +46,11 @@ export const Menu = ({ listUser, wallet }) => {
           <HiHome size={40} />
           <span className="pl-[12px] w-full hidden lg:block">Trang chủ</span>
         </Link>
-        <Link to="/search" className={LinkStyle}>
+
+        <button className={LinkStyle} onClick={handleMenu}>
           <BiSearch size={40} />
-          <span className="pl-[12px] w-full hidden lg:block">Tìm kiếm</span>
-        </Link>
+          <span className="pl-[12px] w-full text-left hidden lg:block">Tìm kiếm</span>
+        </button>
         <Link to="/posts" className={LinkStyle}>
           <BiAddToQueue size={40} />
           <span className="pl-[12px] w-full hidden lg:block">Posts</span>
@@ -44,10 +59,10 @@ export const Menu = ({ listUser, wallet }) => {
           <RiMessengerLine size={40} />
           <span className="pl-[12px] w-full hidden lg:block">Tin nhắn</span>
         </Link>
-        <Link to="/notification" className={LinkStyle}>
+        <button className={LinkStyle} onClick={notieMenu}>
           <AiOutlineHeart size={40} />
-          <span className="pl-[12px] w-full hidden lg:block">Thông báo</span>
-        </Link>
+          <span className="pl-[12px] text-left w-full hidden lg:block">Thông báo</span>
+        </button>
         <Link to="/settings" className={LinkStyle}>
           <FiSettings size={40} />
           <span className="pl-[12px] w-full hidden lg:block">Cài đặt</span>
@@ -62,9 +77,16 @@ export const Menu = ({ listUser, wallet }) => {
         <div className="flex items-center w-[100%] p-[12px] text-[20px] font-medium hover:bg-[#f4f4f4cc] rounded-full mt-auto">
           <DropUpRender color_btn={'white'} name_btn={'Xem thêm'} wallet={wallet} />
         </div>
-
-
+        <DrawerSearch isSearchOpen={drawSearch} option={option} listUser={listUser} wallet={wallet} />
+        <ReactDimmer
+          isOpen={drawSearch}
+          exitDimmer={setDrawSearch}
+          zIndex={100}
+          // blur={1.5}
+          className="menu-backgroud"
+        />
       </div>
+
     </div>
   );
 };
