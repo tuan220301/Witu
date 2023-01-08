@@ -19,7 +19,7 @@ export class HelloNEAR {
       contractId: this.contractId,
       method: 'add_user',
       args: {
-        first_name, last_name,  wallet, number_phone, instagram, facebook, birthday,avatar
+        first_name, last_name, wallet, number_phone, instagram, facebook, birthday, avatar
       }
     })
   }
@@ -29,12 +29,12 @@ export class HelloNEAR {
       method: "get_user"
     })
   }
-  async update_user(id, first_name, last_name, wallet, number_phone, instagram, facebook, avatar) {
+  async update_user(id, first_name, last_name, wallet, number_phone, instagram, facebook, birthday, avatar) {
     return await this.wallet.callMethod({
       contractId: this.contractId,
-      method: 'add_blog',
+      method: 'update_user',
       args: {
-        id, first_name, last_name, wallet, number_phone, instagram, facebook, avatar
+        id, first_name, last_name, wallet, number_phone, instagram, facebook, birthday, avatar
       }
     })
   }
