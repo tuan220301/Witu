@@ -7,6 +7,8 @@ import { EducationalText, SignInPrompt, SignOutButton } from "./login_page";
 import { Home } from "./Blog_app/Modules/Home";
 import { CreateUser } from "./Blog_app/Modules/Create_User";
 import { Menu } from "./Blog_app/Components/Buttons/Toggle_menu";
+import FriendSuggest from "./Blog_app/Components/Friend_Suggest";
+
 
 export default function App({ isSignedIn, helloNEAR, wallet }) {
   const [listUser, setListUser] = React.useState([]);
@@ -38,6 +40,9 @@ export default function App({ isSignedIn, helloNEAR, wallet }) {
           <div className="bg-[#fafafa] w-full flex flex-row h-screen overflow-hidden dark:bg-[#121212] dark:text-[#fafafa]">
             <Menu listUser={new_user} wallet={wallet} controller={helloNEAR} />
             <Home listUser={listUser} listControl={helloNEAR} accountId={accountId} />
+            <div className="hidden lg:block ">
+              <FriendSuggest listUser={listUser} accountId={accountId} />
+            </div>
           </div>
         );
       } else {
